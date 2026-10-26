@@ -1,0 +1,20 @@
+.rodape { padding: 4rem 0 calc(2rem + 72px); /* espaço do WhatsApp fixo */ border-top: 1px solid var(--line); background: var(--bg2); }
+.rodape-topo { display: grid; gap: 2.5rem; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); }
+.rodape-logo { display: inline-flex; align-items: center; min-height: 44px; align-self: start; }
+.rodape-nav { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); }
+.rodape-nav h2 { font-family: var(--display); font-size: 1rem; font-weight: 400; letter-spacing: .18em; color: var(--mute); }
+.rodape-nav ul { margin: .5rem 0 0; padding: 0; list-style: none; }
+.rodape-nav a, .rodape-link {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-size: .975rem; text-decoration: none;
+}
+.rodape-link { padding: 0; border: 0; background: none; color: inherit; font: inherit; font-size: .975rem; cursor: pointer; }
+.rodape-nav a:hover, .rodape-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.rodape-legal {
+  margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line);
+  color: var(--mute); font-size: .9rem; font-style: normal; line-height: 1.8;
+}
+.rodape-legal strong { color: var(--fg); font-weight: 600; }
+.rodape-legal a { color: var(--fg); text-underline-offset: 3px; overflow-wrap: anywhere; }
+.rodape-copy { margin-top: 1.5rem; color: var(--mute); font-size: .9rem; }
+@media (max-width: 720px) { .rodape-topo { grid-template-columns: 1fr; } }

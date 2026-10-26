@@ -1,0 +1,42 @@
+/* Escondido por padrão; o snippet do <head> põe html.cookies-pendente antes do primeiro paint (sem flash, CLS 0) */
+.cookie-banner {
+  display: none;
+  position: fixed;
+  inset: auto 16px 16px;
+  z-index: 50; /* acima do WhatsApp (<50), igual ao header */
+  max-width: 760px;
+  max-height: 40vh;
+  margin: 0 auto;
+  overflow: auto;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg2);
+  box-shadow: 0 12px 32px rgb(0 0 0 / .4);
+  font-size: .9375rem;
+}
+.cookies-pendente .cookie-banner { display: block; }
+.cookie-banner p { color: var(--mute); margin-bottom: .75rem; }
+.cookie-banner a, .cookie-painel a { color: var(--fg); }
+
+/* Mesmo peso visual nos botões: mesma classe, mesma largura, sem destaque */
+.cookie-acoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .5rem; }
+.cookie-btn { font: inherit; font-weight: 600; padding: .6rem 1rem; cursor: pointer; }
+
+.cookie-painel {
+  width: min(480px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.cookie-painel::backdrop { background: rgb(0 0 0 / .6); }
+.cookie-painel h2 { font-family: var(--display); font-size: 2rem; font-weight: 400; line-height: 1; }
+.cookie-intro { margin: .75rem 0 1rem; color: var(--mute); font-size: .9375rem; }
+.cookie-cat { display: flex; gap: .75rem; min-height: 44px; padding: .875rem 0; border-top: 1px solid var(--line); cursor: pointer; }
+.cookie-cat input { flex: none; width: 20px; height: 20px; margin-top: .2rem; accent-color: var(--fg); }
+.cookie-cat small { display: block; color: var(--mute); font-size: .875rem; }
+.cookie-painel .cookie-acoes { margin-top: 1rem; }
