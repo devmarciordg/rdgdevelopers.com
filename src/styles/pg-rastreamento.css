@@ -1,0 +1,13 @@
+.pg-rastreamento-nota { max-width: 70ch; margin-top: 2rem; color: var(--mute); }
+.pg-rastreamento-nota a { color: var(--fg); text-underline-offset: 3px; }
+.pg-rastreamento-prosa { margin-top: 3rem; padding-bottom: 0; }
+.secao-topo + .pg-rastreamento-prosa { margin-top: 0; }
+.pg-rastreamento-fluxo { display: grid; gap: 1px; padding: 0; list-style: none; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--line); counter-reset: passo; }
+.pg-rastreamento-fluxo li { display: grid; align-content: start; gap: .35rem; padding: 1.5rem; background: var(--bg); counter-increment: passo; }
+.pg-rastreamento-fluxo li::before { content: "0" counter(passo); font-family: var(--display); color: var(--mute); }
+.pg-rastreamento-fluxo li:nth-child(2) { background: var(--bg2); }
+.pg-rastreamento-fluxo strong + span + strong { margin-top: .75rem; padding-top: .75rem; border-top: 1px dashed var(--line); }
+.pg-rastreamento-fluxo span { color: var(--mute); font-size: .975rem; }
+.pg-rastreamento-fig figcaption { margin-top: .75rem; color: var(--mute); font-size: .875rem; }
+@media (min-width: 760px) { .pg-rastreamento-fluxo { grid-template-columns: 1fr 1.2fr 1fr; } }
+.pg-rastreamento-btn { gap: .5rem; }
