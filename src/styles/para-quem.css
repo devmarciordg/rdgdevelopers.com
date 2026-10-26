@@ -1,0 +1,15 @@
+.para-quem-rodape {
+  margin-top: 1.5rem;
+  color: var(--mute);
+}
+.para-quem-rodape a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 44px;
+  color: var(--fg);
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+.para-quem-rodape svg { transition: transform .2s; }
+.para-quem-rodape a:hover svg { transform: translateX(4px); }

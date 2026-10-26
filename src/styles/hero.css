@@ -1,0 +1,120 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: calc(100svh - 64px);
+  padding: clamp(6rem, 16vw, 10rem) 0 clamp(8rem, 18vw, 12rem);
+  text-align: center;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -2;
+  height: 600px;
+  background:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 6rem 5rem;
+  -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 110%);
+  mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 110%);
+  opacity: .8;
+}
+
+/* Horizonte luminoso: só decorativo, então pode animar sem afetar o LCP */
+.hero-horizon {
+  position: absolute;
+  left: 50%;
+  top: calc(100% - 110px);
+  z-index: -1;
+  width: max(700px, 140%);
+  height: 750px;
+  border-radius: 100%;
+  background: radial-gradient(closest-side, var(--bg) 82%, #fff);
+  transform: translateX(-50%);
+  animation: horizon-up 1.2s cubic-bezier(.2, .7, .2, 1) both;
+}
+
+/* Funde a base do horizonte com o fundo da próxima seção */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  z-index: -1;
+  height: 140px;
+  background: linear-gradient(to top, var(--bg), transparent);
+}
+
+@keyframes horizon-up {
+  from { opacity: 0; transform: translate(-50%, 40px); }
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: 44px;
+  padding: .5rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: linear-gradient(to top right, rgb(255 255 255 / .04), transparent);
+  color: var(--mute);
+  font-size: .875rem;
+  letter-spacing: .02em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.hero-eyebrow:hover { color: var(--fg); }
+.hero-eyebrow svg { transition: transform .3s; }
+.hero-eyebrow:hover svg { transform: translateX(4px); }
+
+/* H1 é o LCP: visível desde o primeiro paint, sem animação */
+.hero h1 {
+  max-width: 18ch;
+  margin: 1.75rem auto 1.5rem;
+  font-family: var(--display);
+  font-size: clamp(3.25rem, 8vw, 6rem);
+  font-weight: 400;
+  line-height: .95;
+  letter-spacing: .01em;
+  text-wrap: balance;
+  color: var(--fg);
+}
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .hero h1 {
+    background: linear-gradient(to bottom right, var(--fg) 30%, var(--mute));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.hero-sub {
+  max-width: 58ch;
+  margin: 0 auto 2.5rem;
+  color: var(--mute);
+  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  text-wrap: balance;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+}
+
+/* Uma frase por linha quando cabe */
+@media (min-width: 640px) {
+  .hero h1 span { display: block; }
+}
+
+@media (max-width: 480px) {
+  .hero-cta .btn { width: 100%; }
+}
+
+.hero-note {
+  margin-top: 1rem;
+  color: var(--mute);
+  font-size: .875rem;
+}

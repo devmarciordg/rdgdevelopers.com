@@ -1,0 +1,15 @@
+{
+  "data": "2026-10-26",
+  "ferramenta": "Lighthouse 12",
+  "perfil": "celular simulado",
+  "execucoes": 3,
+  "notas": {
+    "performance": 100,
+    "acessibilidade": 100,
+    "boasPraticas": 100,
+    "seo": 100
+  },
+  "lcp": "1,5 s",
+  "cls": "0",
+  "tbt": "0 ms"
+}

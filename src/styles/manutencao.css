@@ -1,0 +1,29 @@
+/* 3 colunas no desktop, empilhadas no celular */
+.planos { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+
+.plano h3 { margin-top: .75rem; }
+
+.plano-horas {
+  font-family: var(--display);
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+/* Destaque leve no plano do meio, sem texto de "mais vendido" */
+.plano:nth-child(2) { background: var(--bg2); box-shadow: inset 0 2px 0 var(--fg); }
+
+.plano-itens {
+  margin-top: 1.25rem;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+  display: grid;
+  gap: .6rem;
+  font-size: .975rem;
+}
+.plano-itens li { display: flex; gap: .6rem; align-items: flex-start; }
+.plano-itens svg { flex: none; margin-top: .2rem; }
+
+.manutencao-acoes { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+
+.manutencao-nota { margin-top: 1.5rem; color: var(--mute); font-size: .9375rem; max-width: 70ch; }
