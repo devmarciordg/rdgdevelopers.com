@@ -1,0 +1,11 @@
+.pg-projetos-tipo { display: inline-block; padding: .2rem .7rem; border: 1px solid var(--line); border-radius: 999px; }
+.pg-projetos-corpo { display: grid; gap: 2rem; max-width: 72ch; }
+.pg-projetos-corpo h3 { margin-bottom: .5rem; font-size: 1.125rem; }
+.pg-projetos-corpo p, .pg-projetos-corpo li { color: var(--mute); }
+.pg-projetos-corpo ul { padding-left: 1.25em; }
+.pg-projetos-corpo .pg-projetos-stack { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; }
+.pg-projetos-stack li { padding: .3rem .8rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg2); font-size: .9rem; }
+.pg-projetos-nota { font-family: var(--display); font-size: 4rem; line-height: 1; }
+.pg-projetos-vitais { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
+.pg-projetos-vitais dt { color: var(--mute); font-size: .9rem; }
+.pg-projetos-vitais dd { margin: 0; font-size: 1.25rem; font-weight: 600; }
