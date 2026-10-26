@@ -1,7 +1,7 @@
 # Dependências e build
 node_modules/
 dist/
-.ssr/
+.ssr*/
 
 # Documentos internos (estratégia, jurídico): nunca publicar, o repositório é público
 interno/
