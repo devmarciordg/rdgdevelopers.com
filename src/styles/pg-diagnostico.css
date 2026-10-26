@@ -1,0 +1,15 @@
+.pg-diagnostico-acoes { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+.pg-diagnostico-lista { display: grid; gap: 1px; margin: 0 0 2rem; padding: 0; list-style: none; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--line); }
+.pg-diagnostico-q { padding: 1.25rem 1.5rem; border: 0; background: var(--bg); }
+.pg-diagnostico-q legend { float: left; width: 100%; margin-bottom: .75rem; font-weight: 600; }
+.pg-diagnostico-q legend span { margin-right: .5rem; font-family: var(--display); color: var(--mute); }
+.pg-diagnostico-op { clear: both; display: flex; flex-wrap: wrap; gap: .5rem; }
+.pg-diagnostico-op label { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; padding: 0 1rem; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; }
+.pg-diagnostico-op label:has(:checked) { background: var(--bg2); border-color: var(--mute); }
+.pg-diagnostico-op input { width: 20px; height: 20px; margin: 0; accent-color: var(--fg); }
+.pg-diagnostico-res { margin-top: 2.5rem; }
+.pg-diagnostico-res h3 { margin-bottom: 1rem; font-size: 1.375rem; }
+.pg-diagnostico-res h4 { margin-bottom: .5rem; font-size: 1.125rem; }
+.pg-diagnostico-res .card a { display: inline-flex; align-items: center; min-height: 44px; margin-top: .5rem; text-underline-offset: 3px; }
+.pg-diagnostico-nota { margin: 1.5rem 0; max-width: 65ch; color: var(--mute); font-size: .95rem; }
+.pg-diagnostico-form [hidden] { display: none; }
