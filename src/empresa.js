@@ -14,7 +14,7 @@ export const empresa = {
   telefone: '+5533999147537',
   // Mesmo horário do openingHoursSpecification em schema.js
   horario: 'Segunda a sexta, das 09:00 às 17:00',
-  // shortcut: URL do webhook n8n ainda não definida; preencher antes do deploy
-  webhookLead: '',
+  // Automação do n8n que cria o contato e o card em "2 · Vendas > Novo" no Evo CRM
+  webhookLead: 'https://n8n.rdgdevelopers.com/webhook/lead-site',
   whatsappLink:'https://wa.me/5533999147537?text=' + encodeURIComponent('Olá! Vim pelo site da RDG.'),
 }
