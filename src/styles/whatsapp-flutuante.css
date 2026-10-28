@@ -1,0 +1,17 @@
+.wa-flutuante {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 40; /* abaixo do header (50) e do banner de cookies */
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--fg);
+  color: var(--bg);
+  box-shadow: 0 6px 20px rgb(0 0 0 / .4);
+  transition: transform .15s;
+}
+.wa-flutuante:hover { transform: translateY(-2px); }

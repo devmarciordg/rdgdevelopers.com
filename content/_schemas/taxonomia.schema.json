@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "taxonomia.schema.json",
+  "title": "Temas e tags do blog",
+  "description": "content/taxonomia.json. Tema é a navegação principal (1 por post). Tag é o assunto fino (1 a 3 por post). Uma tag só ganha página própria com 2 ou mais posts publicados e descrição preenchida; abaixo disso aparece como texto sem link.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["temas", "tags"],
+  "properties": {
+    "temas": { "type": "array", "title": "Temas", "minItems": 1, "items": { "$ref": "#/$defs/termo" } },
+    "tags": { "type": "array", "title": "Tags", "items": { "$ref": "#/$defs/termo" } }
+  },
+  "$defs": {
+    "termo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slug", "nome"],
+      "properties": {
+        "slug": { "type": "string", "title": "Slug", "description": "Parte da URL. Não mude depois de publicado.", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "maxLength": 40 },
+        "nome": { "type": "string", "title": "Nome", "description": "Como aparece no site.", "minLength": 2, "maxLength": 40 },
+        "descricao": { "type": "string", "title": "Descrição", "description": "Texto da página do tema ou da tag. Obrigatório para a tag ganhar página.", "minLength": 50, "maxLength": 200 }
+      }
+    }
+  }
+}

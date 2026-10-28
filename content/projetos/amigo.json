@@ -1,0 +1,58 @@
+{
+  "status": "publicado",
+  "ordem": 2,
+  "tipo": "Case de cliente",
+  "titulo": "Amigo: anúncio local até o balcão",
+  "cliente": "Amigo (Açaí Trem Bom)",
+  "autorizacao_cliente": "Áudio de autorização do cliente no WhatsApp da RDG, recebido pelo Márcio (registrado em 2026-10-27). Cobre nome, logo e números do case.",
+  "segmento": "Sorveteria e açaí",
+  "servicos": [
+    "trafego"
+  ],
+  "capa": {
+    "cor": "#bfe3f5"
+  },
+  "periodo": "janeiro a abril de 2026",
+  "resumo": "Sorveteria com delivery e loja física. Anúncios de conversão concentrados no entorno da loja, acompanhados no delivery e nas vendas no balcão.",
+  "infografico": {
+    "desafio": "Alcance que não virava pedido",
+    "acao": "Anúncio de conversão no entorno da loja",
+    "valor": "+64%",
+    "resultado": "de faturamento em 24 dias"
+  },
+  "contexto": "O Amigo (Açaí Trem Bom), sorveteria com delivery e loja física, queria vender mais e ficar mais conhecido na cidade entre janeiro e abril de 2026.",
+  "problema": "Campanha de alcance nem sempre vira pedido. O objetivo era que o reconhecimento da marca virasse cliente no delivery e no balcão.",
+  "feito": [
+    "Anúncios no Meta Ads focados em conversão, no raio próximo à loja.",
+    "Verba concentrada numa área menor, para as mesmas pessoas verem a marca várias vezes, sempre junto com a oferta.",
+    "Vendas acompanhadas pelo sistema da loja (Yooga)."
+  ],
+  "stack": [
+    "Meta Ads",
+    "Yooga"
+  ],
+  "resultados": [
+    {
+      "valor": "+64%",
+      "rotulo": "no faturamento nos primeiros 24 dias de campanha (dados do Yooga)"
+    }
+  ],
+  "grafico": {
+    "titulo": "Faturamento da sorveteria",
+    "nota": "Índice: faturamento de antes da campanha = 100. Fonte: Yooga.",
+    "barras": [
+      {
+        "rotulo": "Antes da campanha",
+        "valor": 100,
+        "rdg": false
+      },
+      {
+        "rotulo": "Primeiros 24 dias",
+        "valor": 164,
+        "rdg": true
+      }
+    ]
+  },
+  "aprendemos": "Aqui, as vendas no balcão também subiram no período. Medir só o delivery esconderia parte do resultado.",
+  "destaque_home": true
+}

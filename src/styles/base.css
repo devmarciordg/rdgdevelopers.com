@@ -1,0 +1,152 @@
+/* optional: sem troca tardia de fonte, logo sem CLS no H1 (LCP) */
+@font-face {
+  font-family: "Bebas Neue";
+  src: url(/fonts/bebas-neue.woff2) format("woff2");
+  font-display: optional;
+}
+/* Bebas só tem maiúsculas: todo uso de var(--display) leva text-transform: uppercase para a fonte reserva manter o padrão */
+/* Se a Bebas não chegar a tempo, Impact ajustado ocupa quase a mesma largura e altura: o H1 não ganha linhas */
+@font-face {
+  font-family: "Bebas Fallback";
+  src: local("Impact"), local("Arial Narrow Bold");
+  size-adjust: 73%;
+  ascent-override: 123%;
+  descent-override: 41%;
+  line-gap-override: 0%;
+}
+
+:root {
+  --bg: #151517;
+  --bg2: #1d1d20;
+  --line: #2c2c30;
+  --fg: #fff;
+  --mute: #a1a1aa;
+  --display: "Bebas Neue", "Bebas Fallback", Impact, sans-serif;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 1.0625rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+/* Seções da home: mesmo ritmo, rótulo, título em Bebas e linha no topo */
+.secao {
+  padding: clamp(4rem, 10vw, 7rem) 0;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 64px; /* altura do header fixo */
+}
+.secao-topo { max-width: 720px; margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+.label {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: .18em;
+  color: var(--mute);
+}
+.secao h2 {
+  margin: .5rem 0 1rem;
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: .01em;
+  text-wrap: balance;
+}
+.secao-sub { color: var(--mute); font-size: 1.125rem; max-width: 60ch; }
+
+/* Cards separados por linhas de 1px, ecoando a grade do hero */
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--line);
+}
+.card { padding: 1.75rem; background: var(--bg); transition: background .2s; }
+.card:hover { background: var(--bg2); }
+.card h3 { margin: 1.25rem 0 .5rem; font-size: 1.125rem; }
+.card p { color: var(--mute); font-size: .975rem; }
+.card-icone {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg2);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: .8rem 1.6rem;
+  border-radius: 12px;
+  background: var(--fg);
+  color: var(--bg);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .15s;
+}
+.btn:hover { transform: translateY(-2px); }
+/* Doherty: resposta visual imediata ao toque */
+.btn:active { transform: scale(.97); }
+.btn-sm { min-height: 44px; padding: .5rem 1rem; font-size: .95rem; }
+.btn.ghost { background: none; color: var(--fg); border: 1px solid var(--line); }
+
+/* Link de ação com seta: um só estilo em todo o site */
+.link-seta {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 44px;
+  color: var(--fg);
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+.link-seta svg { transition: transform .2s; }
+.link-seta:hover svg { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* Ilha islands/revelar.js: a classe só existe quando o JS roda */
+.revelar {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity .7s cubic-bezier(.22, 1, .36, 1), transform .7s cubic-bezier(.22, 1, .36, 1);
+}
+.revelar.revelado { opacity: 1; transform: none; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

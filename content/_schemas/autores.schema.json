@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autores.schema.json",
+  "title": "Autores",
+  "description": "content/autores.json. Só pessoas reais da RDG, com autorização de uso do nome. A foto, se houver, fica em src/assets/autores/<slug>.webp e .avif (quadrada, 112px); sem ela, o site mostra as iniciais.",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["slug", "nome", "url"],
+    "properties": {
+      "slug": { "type": "string", "title": "Slug", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+      "nome": { "type": "string", "title": "Nome completo", "minLength": 3 },
+      "cargo": { "type": "string", "title": "Cargo" },
+      "url": { "type": "string", "title": "Página do autor", "description": "Caminho interno, ex.: /sobre", "pattern": "^/" },
+      "organizacao": { "type": "boolean", "title": "É a empresa", "description": "Marque para a assinatura da própria RDG: o Google recebe a organização, não uma pessoa." }
+    }
+  }
+}

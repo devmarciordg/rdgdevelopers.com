@@ -1,0 +1,75 @@
+{
+  "status": "publicado",
+  "ordem": 4,
+  "tipo": "Case de cliente",
+  "titulo": "Pizzaria em Governador Valadares: primeiro teste no Meta Ads",
+  "cliente": "Pizzaria em Governador Valadares",
+  "autorizacao_cliente": "Cliente não autorizou a divulgação do nome: case publicado sem identificar a pizzaria, só com segmento e cidade (combinado com o Márcio em 2026-10-27).",
+  "segmento": "Pizzaria com delivery",
+  "cidade": "Governador Valadares (MG)",
+  "servicos": [
+    "trafego"
+  ],
+  "capa": {
+    "cor": "#1e4d2b"
+  },
+  "periodo": "setembro de 2026",
+  "resumo": "Pizzaria com delivery e sem histórico de anúncios. Uma campanha de 28 dias no Meta Ads, com verba de teste, levando direto à conversa no WhatsApp e no Instagram.",
+  "infografico": {
+    "desafio": "Público que seguia o perfil, mas não pedia",
+    "acao": "Anúncio de produto e preço direto no WhatsApp",
+    "valor": "137",
+    "resultado": "pedidos em 28 dias, no primeiro anúncio"
+  },
+  "contexto": "Uma pizzaria com delivery em Governador Valadares (MG), sem histórico de tráfego pago, vendia só pelo orgânico e concorria com os aplicativos grandes. O cliente não autorizou a divulgação do nome.",
+  "problema": "Parte do público já seguia o perfil, mas não pedia. Sem nenhuma campanha anterior, era preciso testar o canal com pouca verba antes de investir mais.",
+  "feito": [
+    "Campanha de fundo de funil no Meta Ads, com o botão abrindo conversa no WhatsApp ou no Direct do Instagram.",
+    "Anúncios mostrando o produto, o preço e como pedir, sem texto genérico.",
+    "CPM, CTR e custo por conversa acompanhados toda semana, com ajuste antes de a verba acabar.",
+    "Pedidos e receita conferidos no sistema de pedidos da pizzaria."
+  ],
+  "stack": [
+    "Meta Ads",
+    "WhatsApp",
+    "Instagram Direct"
+  ],
+  "resultados": [
+    {
+      "valor": "137",
+      "rotulo": "pedidos em 28 dias de campanha (sistema de pedidos)"
+    },
+    {
+      "valor": "15,58 vezes",
+      "rotulo": "a verba de anúncio, em receita (sistema de pedidos e Meta Ads)"
+    }
+  ],
+  "grafico": {
+    "titulo": "Receita por semana de campanha",
+    "nota": "Índice: semana 1 = 100. Fonte: sistema de pedidos.",
+    "barras": [
+      {
+        "rotulo": "Semana 1",
+        "valor": 100,
+        "rdg": true
+      },
+      {
+        "rotulo": "Semana 2",
+        "valor": 124,
+        "rdg": true
+      },
+      {
+        "rotulo": "Semana 3",
+        "valor": 72,
+        "rdg": true
+      },
+      {
+        "rotulo": "Semana 4",
+        "valor": 133,
+        "rdg": true
+      }
+    ]
+  },
+  "aprendemos": "Aqui, anúncio com produto, preço e como pedir levou direto à conversa. A terceira semana foi a mais fraca, e o acompanhamento semanal é o que permite corrigir a rota dentro do mesmo mês.",
+  "destaque_home": false
+}

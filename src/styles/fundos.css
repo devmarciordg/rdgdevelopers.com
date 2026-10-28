@@ -1,0 +1,75 @@
+/* Fundos das seções: só CSS, sem JS. Monocromático; a variação vem de textura e de movimento lento.
+   Movimento só em transform (compositor): não custa main thread. prefers-reduced-motion já zera animações em base.css. */
+
+/* Número vazado gigante em cada seção, contado pelo CSS: dá ritmo sem marcação extra */
+main { counter-reset: secao; }
+.secao {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  counter-increment: secao;
+}
+.secao::after {
+  content: counter(secao, decimal-leading-zero);
+  content: counter(secao, decimal-leading-zero) / ""; /* decorativo: leitor de tela ignora */
+  position: absolute;
+  z-index: -1;
+  top: clamp(1rem, 4vw, 2.5rem);
+  right: max(20px, (100% - 1080px) / 2); /* borda direita do .wrap */
+  font-family: var(--display);
+  font-size: clamp(7rem, 22vw, 15rem);
+  line-height: .8;
+  color: transparent;
+  -webkit-text-stroke: 1px #36363b;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Página de seção única (listagem do blog): o número não conta nada */
+.sem-numero::after { content: none; }
+
+/* Camada de textura atrás do conteúdo */
+.fundo-pontos::before,
+.fundo-grade::before,
+.fundo-brilho::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Grade de pontos parada, discreta, apagando para as bordas */
+.fundo-pontos::before {
+  inset: 0;
+  opacity: .5;
+  background: radial-gradient(circle, #4a4a52 1.2px, transparent 1.7px) 0 0 / 24px 24px;
+  -webkit-mask-image: radial-gradient(ellipse 65% 75% at 85% 30%, #000 20%, transparent 80%);
+  mask-image: radial-gradient(ellipse 65% 75% at 85% 30%, #000 20%, transparent 80%);
+}
+
+/* Mesma grade de linhas da hero, saindo do topo */
+.fundo-grade::before {
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 6rem 5rem;
+  background-position: center top;
+  -webkit-mask-image: radial-gradient(ellipse 75% 60% at 50% 0%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 60% at 50% 0%, #000 30%, transparent 100%);
+  opacity: .7;
+}
+
+/* Luz branca suave que deriva devagar */
+.fundo-brilho::before {
+  width: min(70rem, 140vw);
+  aspect-ratio: 1;
+  top: -20%;
+  left: 40%;
+  background: radial-gradient(closest-side, rgb(255 255 255 / .07), rgb(255 255 255 / .025) 45%, transparent);
+  animation: deriva 26s ease-in-out infinite alternate;
+}
+@keyframes deriva {
+  from { transform: translate(-10%, -5%); }
+  to { transform: translate(-45%, 25%); }
+}

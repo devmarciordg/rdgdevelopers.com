@@ -1,0 +1,64 @@
+.rodape { padding: 0 0 calc(2rem + 72px); /* espaço do WhatsApp fixo */ border-top: 1px solid var(--line); background: var(--bg2); }
+.rodape > .wrap { padding-top: 4rem; }
+.rodape-topo { display: grid; gap: 2.5rem; grid-template-columns: auto minmax(0, 1fr); column-gap: clamp(2.5rem, 8vw, 7rem); }
+.rodape-logo { display: inline-flex; align-items: center; min-height: 44px; align-self: start; }
+/* Jakob: 4 colunas lado a lado no desktop, 2x2 abaixo disso */
+.rodape-nav { display: grid; gap: 2rem 1.5rem; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1024px) { .rodape-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.rodape-nav h2 { font-family: var(--display); text-transform: uppercase; font-size: 1rem; font-weight: 400; letter-spacing: .18em; color: var(--mute); }
+.rodape-nav ul { margin: .5rem 0 0; padding: 0; list-style: none; }
+.rodape-nav a, .rodape-link {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-size: .975rem; text-decoration: none;
+}
+.rodape-link { padding: 0; border: 0; background: none; color: inherit; font: inherit; font-size: .975rem; cursor: pointer; }
+.rodape-nav a:hover, .rodape-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.rodape-legal {
+  margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line);
+  color: var(--mute); font-size: .9rem; font-style: normal; line-height: 1.8;
+}
+.rodape-legal strong { color: var(--fg); font-weight: 600; }
+.rodape-legal a { color: var(--fg); text-underline-offset: 3px; overflow-wrap: anywhere; }
+@media (max-width: 720px) { .rodape-topo { grid-template-columns: 1fr; } }
+.rodape-horario { margin: .5rem 0 0; color: var(--mute); font-size: .9rem; }
+.rodape-legal p { margin: 0; }
+.rodape-legal p + p { margin-top: .25rem; }
+
+/* Convite final: mesma grade do hero, fecha o ciclo visual da página */
+.rodape-convite {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(3.5rem, 9vw, 6rem) 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  text-align: center;
+}
+.rodape-convite::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 6rem 5rem;
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 100%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 60% 70% at 50% 100%, #000 30%, transparent 100%);
+  opacity: .6;
+}
+.rodape-convite h2 {
+  max-width: 18ch;
+  margin: .75rem auto 2rem;
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+  text-wrap: balance;
+}
+.rodape-convite .label { display: block; text-wrap: balance; }
+.rodape-convite-cta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .75rem 1.5rem; }
+@media (max-width: 480px) { .rodape-convite-cta .btn { width: 100%; } }
+@media (max-width: 340px) {
+  .rodape-nav { grid-template-columns: 1fr; }
+}

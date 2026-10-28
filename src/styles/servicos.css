@@ -1,0 +1,40 @@
+.servicos-grade { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.servicos-grade > li { display: flex; }
+
+/* Card inteiro é o link */
+.servico {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  text-decoration: none;
+}
+.servico p { margin-bottom: 1.5rem; }
+.servico-mais {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: auto;
+  font-size: .9375rem;
+  font-weight: 600;
+}
+.servico-mais svg { transition: transform .2s; }
+.servico:hover .servico-mais svg { transform: translateX(4px); }
+.servico:focus-visible { outline-offset: -4px; }
+
+.servicos-manutencao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg2);
+  text-decoration: none;
+  transition: border-color .2s;
+}
+.servicos-manutencao:hover { border-color: var(--mute); }
+.servicos-manutencao strong { display: block; margin-top: .25rem; font-size: 1.0625rem; }
+.servicos-manutencao > svg { flex: none; transition: transform .2s; }
+.servicos-manutencao:hover > svg { transform: translateX(4px); }

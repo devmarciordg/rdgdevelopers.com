@@ -1,0 +1,54 @@
+/* Página de cada case (/projetos/<id>); vitais e nota também servem a /performance */
+.case-topo { display: grid; gap: 2.5rem; align-items: start; }
+@media (min-width: 900px) { .case-topo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; } }
+.case-capa-grande { border-radius: 16px; }
+.case-capa-grande .case-capa-nome { font-size: clamp(3rem, 9vw, 5.5rem); }
+.case-ficha { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 1rem 2rem; margin: 0 0 2rem; }
+.case-ficha dt { color: var(--mute); font-size: .875rem; }
+.case-ficha dd { margin: 0; font-weight: 600; }
+.case-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: 1.5rem; }
+.case-acoes button { font-family: inherit; }
+
+.case-texto { display: grid; gap: 3rem; max-width: 72ch; }
+.secao .case-secao h2 { margin: 0 0 1rem; font-size: clamp(2rem, 5vw, 2.75rem); }
+.case-secao p, .case-secao li { color: var(--mute); }
+.ancora { margin-left: .25rem; color: var(--mute); text-decoration: none; opacity: 0; }
+.case-secao h2:hover .ancora, .ancora:focus-visible { opacity: 1; }
+@media (hover: none) { .ancora { opacity: .6; } }
+.case-passos { display: grid; gap: 1rem; padding: 0; list-style: none; counter-reset: passo; }
+.case-passos li { display: grid; grid-template-columns: 2.75rem 1fr; counter-increment: passo; }
+.case-passos li::before { content: counter(passo, decimal-leading-zero) / ""; color: var(--fg); font: 1.5rem/1.2 var(--display); }
+.case-secao .case-licao { padding-left: 1.25rem; border-left: 3px solid var(--c); color: var(--fg); font-size: 1.125rem; }
+.pg-projetos-stack { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; }
+.pg-projetos-stack li { padding: .3rem .8rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg2); font-size: .9rem; }
+
+/* Número grande em cima do rótulo; no DOM o dt vem antes, como pede o dl */
+.pg-projetos-resultados { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; margin: 0; }
+.pg-projetos-resultados div { display: flex; flex-direction: column-reverse; justify-content: flex-end; max-width: 22ch; }
+.pg-projetos-resultados dd { margin: 0; color: var(--fg); font: 3.5rem/1 var(--display); text-transform: uppercase; }
+.pg-projetos-resultados dt { color: var(--mute); font-size: .95rem; }
+
+.pg-projetos-nota { font-family: var(--display); text-transform: uppercase; font-size: 4rem; line-height: 1; }
+.pg-projetos-vitais { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
+.pg-projetos-vitais dt { color: var(--mute); font-size: .9rem; }
+.pg-projetos-vitais dd { margin: 0; font-size: 1.25rem; font-weight: 600; }
+/* Infográfico logo abaixo do título: menos respiro que uma seção comum, o resumo vem colado */
+.case-relance { padding: 0 0 clamp(2.5rem, 6vw, 4rem); border-top: 0; }
+.case-relance .case-aviso { margin-top: .75rem; }
+.pg-projetos-resultados + .case-aviso { margin-top: .75rem; }
+
+/* Gráfico do case (components/Grafico.jsx): barras de até 20px, ponta arredondada, base reta; cinza = antes, branco = RDG */
+.grafico { margin: clamp(2.5rem, 6vw, 3.5rem) 0 0; max-width: 46rem; }
+.secao .grafico-titulo { margin: 0; font-size: clamp(1.5rem, 4vw, 2rem); }
+.grafico-nota { margin-top: .25rem; color: var(--mute); font-size: .875rem; }
+.grafico-legenda { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin-top: .75rem; color: var(--mute); font-size: .875rem; }
+.grafico-legenda span { display: inline-flex; align-items: center; gap: .5rem; }
+.grafico-legenda i { width: .75rem; height: .75rem; border-radius: 2px; }
+.grafico table { width: 100%; margin-top: 1.25rem; border-collapse: separate; border-spacing: 0 .5rem; }
+.grafico th { width: 38%; padding-right: 1rem; color: var(--mute); font-size: .875rem; font-weight: 400; text-align: left; }
+.grafico td { display: flex; align-items: center; gap: .5rem; }
+.g-barra { flex: none; width: calc(var(--v) * (100% - 3.5rem)); height: 20px; border-radius: 0 4px 4px 0; }
+.g-valor { color: var(--fg); font-size: .9375rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.g-antes .g-barra, i.g-antes { background: #71717a; }
+.g-rdg .g-barra, i.g-rdg { background: var(--fg); }
+@media (max-width: 39.99rem) { .grafico th { width: 45%; } }

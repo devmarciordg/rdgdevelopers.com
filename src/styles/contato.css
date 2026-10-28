@@ -1,0 +1,52 @@
+.contato-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg2);
+}
+.contato-texto .secao-sub { margin-bottom: 2rem; }
+.contato-form { display: grid; gap: 1.25rem; position: relative; }
+/* Proximidade: rótulo e dica colados ao campo, campos separados entre si */
+.campo { display: grid; gap: .375rem; }
+.campo label { font-weight: 600; }
+.campo-dica { color: var(--mute); font-size: .875rem; }
+.contato-form input[type="text"] {
+  min-height: 48px;
+  padding: .7rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+}
+.contato-form input:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+.contato-nota, .contato-status { color: var(--mute); font-size: .925rem; }
+.contato-check {
+  display: flex;
+  gap: .75rem;
+  align-items: flex-start;
+  font-size: .925rem;
+  cursor: pointer;
+}
+.contato-check input { flex: none; width: 24px; height: 24px; margin: 0; accent-color: var(--fg); }
+.contato-check a { text-underline-offset: 3px; }
+.contato-status a { color: var(--fg); }
+.contato-form button { border: 0; font: inherit; font-weight: 600; cursor: pointer; }
+.contato-form button:disabled { opacity: .75; cursor: wait; }
+/* Carregando: anel girando ao lado do texto (o texto também muda, não depende só do ícone) */
+.contato-form button[aria-busy="true"]::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  margin-right: .6rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: girar .7s linear infinite;
+}
+@keyframes girar { to { transform: rotate(1turn); } }
+/* Fora da vista sem display:none, que alguns robôs detectam */
+.contato-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }

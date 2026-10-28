@@ -1,0 +1,63 @@
+{
+  "status": "publicado",
+  "ordem": 1,
+  "tipo": "Case de cliente",
+  "titulo": "Tradi: anúncio no raio de entrega do delivery",
+  "cliente": "Tradi",
+  "autorizacao_cliente": "Áudio de autorização do cliente no WhatsApp da RDG, recebido pelo Márcio (registrado em 2026-10-27). Cobre nome, logo e números do case.",
+  "segmento": "Delivery de comida",
+  "cidade": "Governador Valadares (MG)",
+  "servicos": [
+    "trafego"
+  ],
+  "capa": {
+    "cor": "#f26522"
+  },
+  "periodo": "janeiro a abril de 2026",
+  "resumo": "Delivery de comida em Governador Valadares. Anúncios no Meta Ads só num raio de 2 km do restaurante, ampliado aos poucos conforme os pedidos se firmavam.",
+  "infografico": {
+    "desafio": "Verba gasta com bairros longe da entrega",
+    "acao": "Anúncio num raio de 2 km, ampliado aos poucos",
+    "valor": "2,5 vezes",
+    "resultado": "o faturamento de antes, em 3 meses"
+  },
+  "contexto": "A Tradi, delivery de comida em Governador Valadares (MG), queria aumentar o volume de pedidos entre janeiro e abril de 2026.",
+  "problema": "Anúncio para a cidade inteira pode gastar verba com cliques de bairros distantes, onde o frete é maior e a comida chega pior.",
+  "feito": [
+    "Campanhas no Meta Ads só num raio de 2 km do restaurante, para concentrar pedidos onde a entrega é rápida e barata.",
+    "Raio ampliado aos poucos, bairro a bairro, depois que o volume de pedidos e o retorno se firmavam em cada etapa.",
+    "Faturamento acompanhado pelo sistema de pedidos do restaurante (Saipos)."
+  ],
+  "stack": [
+    "Meta Ads",
+    "Saipos"
+  ],
+  "resultados": [
+    {
+      "valor": "+62%",
+      "rotulo": "no faturamento nos primeiros 24 dias de campanha (dados do Saipos)"
+    },
+    {
+      "valor": "2,5 vezes",
+      "rotulo": "o faturamento de antes da campanha, ao fim de 3 meses (dados do Saipos)"
+    }
+  ],
+  "grafico": {
+    "titulo": "Faturamento do delivery",
+    "nota": "Índice: faturamento de antes da campanha = 100. Fonte: Saipos.",
+    "barras": [
+      {
+        "rotulo": "Antes da campanha",
+        "valor": 100,
+        "rdg": false
+      },
+      {
+        "rotulo": "Ao fim de 3 meses",
+        "valor": 250,
+        "rdg": true
+      }
+    ]
+  },
+  "aprendemos": "Neste delivery, o raio de entrega definiu a campanha. Começar pequeno e crescer só quando a operação aguentava evitou pagar por pedido que não dava para entregar bem.",
+  "destaque_home": true
+}

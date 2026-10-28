@@ -1,0 +1,5 @@
+[
+  { "slug": "rdg", "nome": "Equipe RDG Developers", "cargo": "Tráfego, automação e sites", "url": "/sobre", "organizacao": true },
+  { "slug": "marcio", "nome": "Márcio Patrick Rodrigues Dias", "cargo": "Sócio e responsável técnico", "url": "/sobre" },
+  { "slug": "luiza", "nome": "Luiza Silva", "cargo": "Comercial e relacionamento", "url": "/sobre" }
+]

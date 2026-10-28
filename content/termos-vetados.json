@@ -1,0 +1,4 @@
+{
+  "descricao": "Termos que costumam prometer resultado (CDC art. 37, CONAR). O build falha se um post usar algum deles, a não ser que o post o libere em termos_liberados, por estar num contexto que não promete nada (ex.: \"não resolve 100%\").",
+  "termos": ["garantido", "garantida", "garantimos", "garantia de resultado", "100%", "sem risco", "risco zero", "o melhor", "número 1", "primeira página do google", "resultado imediato", "dobrar suas vendas", "triplicar"]
+}

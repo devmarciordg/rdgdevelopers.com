@@ -1,0 +1,5 @@
+Contact: mailto:contato@rdgdevelopers.com
+Expires: 2027-10-26T00:00:00.000Z
+Preferred-Languages: pt, en
+Canonical: https://rdgdevelopers.com/.well-known/security.txt
+Policy: https://github.com/devmarciordg/rdgdevelopers.com/blob/main/SECURITY.md

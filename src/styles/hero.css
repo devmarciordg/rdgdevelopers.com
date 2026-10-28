@@ -1,0 +1,160 @@
+/* Mesmo ritmo das outras seções: alinhado à esquerda, altura pelo conteúdo */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(3.5rem, 8vw, 5.5rem);
+}
+
+/* Camada do fundo ASCII: entra com fade quando o canvas está pronto, nunca atrasa o primeiro paint */
+.hero-ascii {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+}
+.hero-ascii.pronto { opacity: 1; }
+.hero-ascii canvas { display: block; width: 100%; height: 100%; }
+/* Legibilidade: aparece só na metade direita e some antes do header e da próxima seção */
+.hero-ascii {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 70%, transparent), linear-gradient(to right, transparent 38%, #000 62%);
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 70%, transparent), linear-gradient(to right, transparent 38%, #000 62%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+/* Uma coluna: luz descendo do topo da hero, apagada, atrás do rótulo e do título.
+   O canvas tem só a altura do topo: menos pixels por quadro e o IntersectionObserver pausa quando ele sai da tela */
+@media (max-width: 959px) {
+  .hero-ascii {
+    bottom: auto;
+    height: 26rem;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 40%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 40%, transparent);
+  }
+  .hero-ascii.pronto { opacity: .5; }
+  /* Halo escuro atrás das letras: o texto mantém o contraste com os caracteres por trás */
+  .hero .label, .hero h1, .hero-sub { text-shadow: 0 0 16px var(--bg), 0 0 4px var(--bg); }
+}
+
+@media (min-width: 960px) {
+  .hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+    gap: clamp(3rem, 6vw, 5rem);
+    align-items: start;
+  }
+}
+
+.hero .label { display: block; line-height: 1.4; text-wrap: balance; }
+
+/* H1 é o LCP: cor sólida, visível desde o primeiro paint, sem animação */
+.hero h1 {
+  margin: .75rem 0 1.5rem;
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: clamp(2.25rem, 11vw, 4.75rem);
+  font-weight: 400;
+  line-height: .95;
+  letter-spacing: .01em;
+  color: var(--fg);
+}
+.hero h1 > span { display: block; }
+/* Linha que gira: altura de uma linha e recorte para as letras entrarem por baixo. O padding guarda acentos e descendentes. */
+.hero-giro {
+  overflow: hidden;
+  padding-block: .12em;
+  margin-block: -.12em;
+  white-space: nowrap;
+}
+.hero-giro span { display: inline-block; white-space: pre; }
+/* Coluna mais estreita entre 960 e 1100px: a frase mais longa do giro precisa caber */
+@media (min-width: 960px) { .hero h1 { font-size: min(4.75rem, 7vw); } }
+
+.hero-sub {
+  max-width: 52ch;
+  text-wrap: pretty;
+  margin-bottom: 2rem;
+  color: var(--mute);
+  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem 1.5rem;
+}
+@media (max-width: 480px) {
+  .hero-cta .btn { width: 100%; }
+}
+
+.hero-note {
+  margin-top: .75rem;
+  color: var(--mute);
+  font-size: .875rem;
+}
+
+/* Prova no mesmo espírito do "Como resolvemos" dos cards de Problemas */
+.hero-prova {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  justify-content: start;
+  gap: 1rem 2.5rem;
+  margin: 2.5rem 0 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+  color: var(--fg);
+  font-weight: 500;
+}
+.hero-prova span {
+  display: block;
+  margin-bottom: .25rem;
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: .9375rem;
+  font-weight: 400;
+  letter-spacing: .14em;
+  color: var(--mute);
+}
+/* Alvo de 44px pelo padding, sem ocupar layout nem quebrar o ritmo da lista */
+.hero-prova a { display: inline-block; padding-block: .75rem; margin-block: -.75rem; text-underline-offset: 4px; }
+@media (max-width: 560px) {
+  .hero-prova { grid-template-columns: 1fr; }
+}
+
+/* Painel do fluxo: no celular sai, porque a seção Problemas já mostra o .fluxo */
+.hero-painel { display: none; }
+.hero-painel .label { position: relative; display: block; margin-bottom: .75rem; text-shadow: 0 0 12px var(--bg), 0 0 4px var(--bg); }
+/* Fim do fluxo em contorno: o único branco cheio da dobra é o CTA */
+.hero-fluxo .fluxo-fim { background: transparent; color: var(--fg); border: 1px solid var(--fg); }
+@media (min-width: 960px) {
+  .hero-painel { display: block; }
+  .hero-fluxo {
+    display: grid;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 2rem;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    /* Translúcido: os caracteres do fundo aparecem por trás sem atrapalhar a leitura */
+    background: rgb(21 21 23 / .9);
+    list-style: none;
+  }
+  /* .card:hover deixaria o painel opaco de repente: mantém a translucidez */
+  .hero-fluxo.card:hover { background: rgb(29 29 32 / .92); }
+  .hero-fluxo li { position: relative; display: grid; justify-items: start; gap: .5rem; }
+  /* Linha vertical ligando as pílulas, como a horizontal do .fluxo */
+  .hero-fluxo li:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 1.3rem;
+    bottom: -1.5rem;
+    left: 1.25rem;
+    width: 1px;
+    background: var(--line);
+  }
+  .hero-fluxo p { padding-left: 2.25rem; color: var(--mute); font-size: .9375rem; }
+}

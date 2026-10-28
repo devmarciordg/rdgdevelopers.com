@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "post.schema.json",
+  "title": "Post do blog",
+  "description": "Frontmatter de content/blog/<slug>.md. O nome do arquivo é o slug e a rota fica /blog/<slug>. O corpo vem depois do frontmatter, em Markdown (ver content/LEIAME.md).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["titulo", "descricao", "status", "publicado", "autores", "tema", "tags"],
+  "properties": {
+    "titulo": { "type": "string", "title": "Título", "description": "Vira o H1 e o título da aba. Até 70 caracteres; acima de 60 o Google pode cortar.", "minLength": 10, "maxLength": 70 },
+    "descricao": { "type": "string", "title": "Descrição", "description": "Resumo de 1 a 2 frases. Aparece na lista do blog, no Google e ao compartilhar. Ideal entre 70 e 160 caracteres.", "minLength": 50, "maxLength": 170 },
+    "status": { "type": "string", "title": "Status", "description": "Rascunho não gera página, nem entra na lista, no sitemap ou no feed.", "enum": ["rascunho", "publicado"] },
+    "publicado": { "type": "string", "title": "Publicado em", "description": "Data de publicação (AAAA-MM-DD). Não pode ser futura.", "format": "date" },
+    "atualizado": { "type": "string", "title": "Atualizado em", "description": "Preencha só quando o conteúdo mudar de verdade (não para correção de digitação). Igual ou depois da publicação.", "format": "date" },
+    "autores": { "type": "array", "title": "Quem escreveu", "description": "De 1 a 4 pessoas de content/autores.json, na ordem em que aparecem no post.", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": { "type": "string" } },
+    "tema": { "type": "string", "title": "Tema", "description": "Um dos temas de content/taxonomia.json. Exatamente um por post." },
+    "tags": { "type": "array", "title": "Tags", "description": "De 1 a 3 tags de content/taxonomia.json, sem repetir.", "minItems": 1, "maxItems": 3, "uniqueItems": true, "items": { "type": "string" } },
+    "relacionados": { "type": "array", "title": "Leia também", "description": "Opcional: até 3 slugs de posts publicados. Vazio, o build escolhe por tags e tema em comum.", "maxItems": 3, "uniqueItems": true, "items": { "type": "string" } },
+    "cliente_citado": { "type": "string", "title": "Cliente citado", "description": "Nome do cliente, se o texto citar algum. Exige autorizacao_cliente." },
+    "autorizacao_cliente": { "type": "string", "title": "Autorização do cliente", "description": "Onde está a autorização por escrito (ex.: contrato RDG-2026-003, cláusula 9). Nunca o documento em si." },
+    "termos_liberados": { "type": "array", "title": "Termos liberados", "description": "Termos de content/termos-vetados.json que este texto usa de propósito, em contexto que não promete resultado (ex.: \"não resolve 100%\").", "uniqueItems": true, "items": { "type": "string" } },
+    "antigos": { "type": "array", "title": "Slugs antigos", "description": "Reservado: slugs anteriores deste post, para redirecionamento 301 quando o slug mudar.", "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" } }
+  }
+}

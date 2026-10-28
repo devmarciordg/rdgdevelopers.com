@@ -1,0 +1,20 @@
+{
+  "temas": [
+    { "slug": "trafego-e-dados", "nome": "Tráfego e dados", "descricao": "Anúncios no Meta Ads e no Google Ads, pixel, API de Conversões e como medir de onde vem cada cliente." },
+    { "slug": "automacao", "nome": "Automação", "descricao": "Atendimento pelo WhatsApp, n8n, CRM e fluxos que tiram trabalho repetitivo da equipe sem perder o contato humano." },
+    { "slug": "performance-e-sites", "nome": "Performance e sites", "descricao": "Sites rápidos no celular, Core Web Vitals, SEO técnico e o que faz uma página carregar em menos de 2 segundos." },
+    { "slug": "bastidores-tecnicos", "nome": "Bastidores técnicos", "descricao": "Como a RDG constrói e opera as próprias ferramentas: servidor, deploy, monitoramento e as decisões por trás de cada uma." }
+  ],
+  "tags": [
+    { "slug": "meta-capi", "nome": "Meta CAPI", "descricao": "API de Conversões da Meta: como enviar eventos pelo servidor, deduplicar com o pixel e medir o que o navegador perde." },
+    { "slug": "pixel", "nome": "Pixel", "descricao": "O pixel da Meta e do Google no navegador: o que ele mede, onde perde conversões e quando somar o envio pelo servidor." },
+    { "slug": "server-side", "nome": "Server-side", "descricao": "Rastreamento pelo servidor: API de Conversões, GTM server-side e o que muda em medição e velocidade do site." },
+    { "slug": "lgpd", "nome": "LGPD", "descricao": "Como aplicar a Lei Geral de Proteção de Dados em anúncios, rastreamento e automações de atendimento, na prática." },
+    { "slug": "clinicas", "nome": "Clínicas" },
+    { "slug": "whatsapp", "nome": "WhatsApp" },
+    { "slug": "n8n", "nome": "n8n" },
+    { "slug": "dominio-e-hospedagem", "nome": "Domínio e hospedagem" },
+    { "slug": "core-web-vitals", "nome": "Core Web Vitals" },
+    { "slug": "algoritmos", "nome": "Algoritmos" }
+  ]
+}

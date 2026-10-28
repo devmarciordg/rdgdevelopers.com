@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm audit --audit-level=high --omit=dev
+      # Conteúdo de content/ (o que o painel admin vai gravar) e testes do parser, antes do build
+      - run: npm run validar
+      - run: npm test
+      # Falha se faltar meta em alguma página ou houver link interno quebrado ou se o CSS/JS passar do orçamento
+      - run: npm run build

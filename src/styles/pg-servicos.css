@@ -1,0 +1,10 @@
+.pg-servicos-split { display: grid; gap: 2rem; }
+@media (min-width: 860px) { .pg-servicos-split { grid-template-columns: 1fr 1.3fr; gap: 4rem; } }
+.pg-servicos-label { display: block; margin-top: 1.25rem; }
+.pg-servicos-texto { max-width: 62ch; }
+.pg-servicos-texto p, .pg-servicos-texto li { color: var(--mute); }
+.pg-servicos-texto p + p { margin-top: .9rem; }
+.pg-servicos-texto h3 { margin: 1.75rem 0 .75rem; font-size: 1.125rem; }
+.pg-servicos-texto ul { padding-left: 1.25rem; display: grid; gap: .4rem; }
+.pg-servicos-texto .btn { margin-top: 2rem; gap: .5rem; }
+.pg-servicos-acoes { display: flex; flex-wrap: wrap; gap: .75rem; }

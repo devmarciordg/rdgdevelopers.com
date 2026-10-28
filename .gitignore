@@ -1,0 +1,22 @@
+# Dependências e build
+node_modules/
+dist/
+.ssr*/
+
+# Documentos internos (estratégia, jurídico): nunca publicar, o repositório é público
+interno/
+
+# Segredos e ambiente
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Sistema e editores
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/

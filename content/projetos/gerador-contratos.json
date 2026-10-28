@@ -1,0 +1,22 @@
+{
+  "status": "rascunho",
+  "ordem": 6,
+  "tipo": "Projeto interno",
+  "titulo": "Gerador de contratos",
+  "resumo": "Sistema próprio que gera contratos e termos em PDF com numeração única. A gente usa no dia a dia da RDG.",
+  "contexto": "Todo projeto da RDG começa com contrato ou termo assinado.",
+  "problema": "Montar cada documento à mão toma tempo e abre espaço para erro de numeração e de dados.",
+  "feito": [
+    "Sistema próprio em Node.js e TypeScript.",
+    "Gera contratos e termos em PDF.",
+    "Cada documento recebe numeração única no formato RDG-AAAA-NNN.",
+    "Usado no dia a dia da RDG."
+  ],
+  "stack": [
+    "Node.js",
+    "TypeScript",
+    "PDF"
+  ],
+  "aprendemos": "Uma ferramenta pequena, feita para o próprio processo, resolve mais do que adaptar o processo a uma ferramenta pronta.",
+  "destaque_home": true
+}

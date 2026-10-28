@@ -1,0 +1,46 @@
+/* 3 colunas no desktop, empilhadas no celular */
+.planos { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+
+.plano h3 { margin-top: .75rem; }
+
+.plano-horas {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+/* Von Restorff com critério verdadeiro: selo de uso, nunca "mais vendido" */
+.plano { display: flex; flex-direction: column; }
+.plano-destaque { background: var(--bg2); box-shadow: inset 0 0 0 1px var(--fg); }
+.plano-selo {
+  align-self: flex-start;
+  margin-top: 1.25rem;
+  padding: .3rem .7rem;
+  border-radius: 8px;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: .8125rem;
+  font-weight: 600;
+}
+.plano-barra { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin-top: 1rem; max-width: 220px; }
+.plano-barra i { height: 8px; border-radius: 2px; background: var(--line); }
+.plano-barra .on { background: var(--fg); }
+.plano-inclui { margin-top: 1rem; padding: 1.5rem 1.75rem; border: 1px solid var(--line); border-radius: 16px; }
+.plano-inclui h3 { font-size: 1rem; }
+
+.plano-itens {
+  margin-top: .75rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem 1.75rem;
+  font-size: .975rem;
+}
+.plano-itens li { display: flex; gap: .6rem; align-items: flex-start; }
+.plano-itens svg { flex: none; margin-top: .2rem; }
+
+.manutencao-acoes { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+
+.manutencao-nota { margin-top: 1.5rem; color: var(--mute); font-size: .9375rem; max-width: 70ch; }

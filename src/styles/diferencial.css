@@ -1,0 +1,28 @@
+.dif { display: grid; gap: 3rem; }
+@media (min-width: 900px) { .dif { grid-template-columns: 1fr 1fr; align-items: start; } }
+
+.dif-bloco { padding: 1.75rem; border: 1px solid var(--line); border-radius: 16px; background: var(--bg2); }
+.dif-bloco h3 { margin: 1.25rem 0 .5rem; font-size: 1.125rem; }
+.dif-bloco p { color: var(--mute); font-size: .975rem; }
+
+.dif-notas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--line);
+}
+.dif-notas li { position: relative; display: grid; justify-items: center; padding: 1.75rem 1rem; background: var(--bg); text-align: center; }
+.dif-notas svg { transform: rotate(-90deg); fill: none; stroke-width: 4; }
+.dif-notas circle { stroke: var(--line); }
+.dif-notas circle + circle { stroke: var(--fg); stroke-linecap: round; }
+.dif-num { position: absolute; top: calc(1.75rem + 48px); translate: 0 -50%; font: 2.5rem/1 var(--display); text-transform: uppercase; }
+.dif-notas li > span:last-child { margin-top: .75rem; color: var(--mute); }
+
+.dif-vitais { margin-top: 1.25rem; font-family: var(--display); text-transform: uppercase; font-size: 1.25rem; letter-spacing: .08em; }
+.dif-nota { color: var(--mute); font-size: .9375rem; }
+.dif-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }

@@ -1,0 +1,53 @@
+.qs-pessoas {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 860px) {
+  .qs-pessoas { grid-template-columns: 1fr 1fr; }
+}
+.qs-foto {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.qs-pessoas h3 { font-size: 1.5rem; }
+.qs-cargo {
+  margin: .25rem 0 .75rem;
+  font-family: var(--display);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--mute);
+}
+.qs-pessoas p:not(.qs-cargo) { color: var(--mute); }
+
+.qs-missao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  margin-top: clamp(3rem, 7vw, 4rem);
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.qs-missao p { max-width: 70ch; color: var(--mute); }
+.qs-missao strong { color: var(--fg); }
+.qs-missao .btn { gap: .4rem; }
+
+/* 5 valores: uma linha no desktop, sem célula vazia */
+.qs-valores { margin-top: clamp(2.5rem, 6vw, 3.5rem); }
+@media (min-width: 560px) {
+  .qs-valores { grid-template-columns: 1fr 1fr; }
+  .qs-valores .card:last-child { grid-column: 1 / -1; }
+}
+@media (min-width: 1000px) {
+  .qs-valores .card:last-child { grid-column: auto; }
+  .qs-valores { grid-template-columns: repeat(5, 1fr); }
+}
+.qs-valores .card h3 { margin-top: 0; }

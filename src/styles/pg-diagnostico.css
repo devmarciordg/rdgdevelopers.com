@@ -1,0 +1,48 @@
+.pg-diagnostico-acoes { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+.pg-diagnostico-lista { display: grid; gap: 1px; margin: 0; padding: 0; list-style: none; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--line); }
+.pg-diagnostico-q { padding: 1.25rem 1.5rem; border: 0; background: var(--bg); }
+.pg-diagnostico-q legend { float: left; width: 100%; margin-bottom: .75rem; font-weight: 600; }
+.pg-diagnostico-q legend span { margin-right: .5rem; font-family: var(--display); text-transform: uppercase; color: var(--mute); }
+.pg-diagnostico-op { clear: both; display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); gap: .5rem; }
+.pg-diagnostico-op label { display: inline-flex; align-items: center; gap: .5rem; min-height: 48px; padding: 0 .85rem; white-space: nowrap; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; }
+.pg-diagnostico-op label:has(:checked) { background: var(--bg2); border-color: var(--mute); }
+.pg-diagnostico-op input { width: 20px; height: 20px; margin: 0; accent-color: var(--fg); }
+.pg-diagnostico-res { margin-top: 2.5rem; }
+.pg-diagnostico-res h3 { margin-bottom: 1rem; font-size: 1.375rem; }
+.pg-diagnostico-res h4 { margin-bottom: .5rem; font-size: 1.125rem; }
+.pg-diagnostico-res .card a { display: inline-flex; align-items: center; min-height: 44px; margin-top: .5rem; text-underline-offset: 3px; }
+.pg-diagnostico-nota { margin: 1.5rem 0; max-width: 65ch; color: var(--mute); font-size: .95rem; }
+.pg-diagnostico-form [hidden] { display: none; }
+.pg-diagnostico-grupo + .pg-diagnostico-grupo { margin-top: 2.5rem; }
+.pg-diagnostico-grupo h3 { margin-bottom: .75rem; font: 400 1.5rem/1 var(--display); text-transform: uppercase; letter-spacing: .06em; }
+/* Barra fixa no pé: progresso + ação ao alcance do polegar */
+.pg-diagnostico-barra {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem 1.5rem;
+  margin-top: 2rem;
+  padding: 1rem 88px 1rem 0; /* direita livre para o botão fixo do WhatsApp */
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.pg-diagnostico-barra p { display: grid; gap: .5rem; flex: 1 1 200px; color: var(--mute); }
+.pg-diagnostico-barra strong { color: var(--fg); }
+.pg-diagnostico-trilho { display: block; height: 6px; max-width: 320px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.pg-diagnostico-trilho i { display: block; height: 100%; width: calc(var(--p, 0) * 100%); background: var(--fg); transition: width .2s; }
+@media (min-width: 1200px) { .pg-diagnostico-barra { padding-right: 0; } }
+.pg-diagnostico-res { scroll-margin-top: 80px; }
+.pg-diagnostico-resumo { display: grid; gap: 1px; margin: 0 0 1.5rem; padding: 0; list-style: none; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--line); }
+.pg-diagnostico-resumo li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: .25rem 1rem; padding: 1rem 1.5rem; background: var(--bg2); }
+.pg-diagnostico-resumo [data-texto] { grid-column: 1 / -1; color: var(--mute); font-size: .95rem; }
+.pg-diagnostico-seg { display: flex; gap: 4px; }
+.pg-diagnostico-seg i { width: 22px; height: 22px; border: 1px solid var(--mute); border-radius: 4px; }
+/* Ponto de atenção: preenchido e com "!" (não depende só da cor) */
+.pg-diagnostico-seg .atencao { display: grid; place-items: center; background: var(--fg); border-color: var(--fg); }
+.pg-diagnostico-seg .atencao::after { content: "!"; color: var(--bg); font: 700 .8rem/1 system-ui, sans-serif; }
+@media (min-width: 720px) { .pg-diagnostico-resumo { grid-template-columns: repeat(3, 1fr); } }
+:root:has(.pg-diagnostico-barra:not([hidden])) { scroll-padding-bottom: 120px; }

@@ -1,0 +1,29 @@
+/* Troca de página: a nova entra com fade (Chrome 126+, Safari 18.2+; nos outros, troca seca) */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
+
+/* Tela das gotas (ilha islands/transicao.js), acima de header e banner */
+.transicao {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: rgb(21 21 23 / .75);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+.transicao.ativa { opacity: 1; pointer-events: auto; }
+/* O SVG só guarda o filtro: fora da grade, senão empurra as gotas para baixo do centro */
+.transicao svg { position: absolute; }
+.transicao-gotas { display: flex; gap: 4px; filter: url(#gosma); }
+.transicao-gotas i { width: 20px; height: 20px; border-radius: 50%; background: var(--fg); animation: gota 1.5s ease-in-out infinite; }
+.transicao-gotas i:nth-child(2) { animation-delay: .2s; }
+.transicao-gotas i:nth-child(3) { animation-delay: .4s; }
+@keyframes gota {
+  25% { transform: translateX(15px) scale(1.2); }
+  50% { transform: none; }
+  75% { transform: translateX(-15px) scale(1.2); }
+}

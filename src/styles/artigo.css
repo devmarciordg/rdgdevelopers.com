@@ -1,0 +1,82 @@
+.artigo-meta { margin-top: 1.5rem; color: var(--mute); font-size: .9375rem; }
+.artigo-meta a { color: var(--fg); text-underline-offset: 3px; }
+
+/* Texto longo: blog, páginas legais e páginas de conteúdo */
+.prosa { max-width: 70ch; padding-bottom: clamp(3rem, 8vw, 5rem); color: #d4d4d8; font-size: 1.0625rem; line-height: 1.75; }
+.prosa > * + * { margin-top: 1.25em; }
+.prosa h2 { margin-top: 2.25em; font-family: var(--display); text-transform: uppercase; font-size: clamp(1.875rem, 4vw, 2.5rem); font-weight: 400; line-height: 1.05; color: var(--fg); }
+.prosa h3 { margin-top: 1.75em; font-size: 1.1875rem; color: var(--fg); }
+.prosa a { color: var(--fg); text-underline-offset: 3px; }
+.prosa strong { color: var(--fg); }
+.prosa ul, .prosa ol { padding-left: 1.25em; }
+.prosa li + li { margin-top: .4em; }
+.prosa code { padding: .1em .35em; border: 1px solid var(--line); border-radius: 6px; background: var(--bg2); font-size: .9em; }
+.prosa pre { overflow-x: auto; padding: 1rem 1.25rem; border: 1px solid var(--line); border-radius: 12px; background: var(--bg2); font-size: .875rem; line-height: 1.6; }
+.prosa pre code { padding: 0; border: 0; background: none; }
+.prosa blockquote { padding-left: 1.25rem; border-left: 2px solid var(--line); color: var(--mute); }
+.prosa table { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+.prosa th, .prosa td { padding: .6rem .75rem; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+.prosa th { background: var(--bg2); color: var(--fg); }
+
+.artigo-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  max-width: 70ch;
+  margin-bottom: clamp(3rem, 8vw, 5rem);
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg2);
+}
+.artigo-cta p { max-width: 42ch; color: var(--mute); }
+.artigo-cta strong { color: var(--fg); }
+
+/* Âncoras do sumário não ficam embaixo do header fixo */
+.prosa :is(h2, h3)[id] { scroll-margin-top: 80px; }
+@media (prefers-reduced-motion: no-preference) { html:has(.sumario) { scroll-behavior: smooth; } }
+
+.sumario { max-width: 70ch; margin-bottom: 2.5rem; border: 1px solid var(--line); border-radius: 12px; background: var(--bg2); }
+.sumario summary { display: flex; align-items: center; min-height: 48px; padding: 0 1.25rem; cursor: pointer; font-family: var(--display); text-transform: uppercase; letter-spacing: .12em; color: var(--mute); }
+.sumario ol { margin: 0; padding: 0 1.25rem 1rem 2.5rem; color: var(--mute); }
+.sumario li + li { margin-top: .15rem; }
+.sumario a { display: block; padding-block: .3rem; color: var(--fg); text-underline-offset: 3px; }
+
+/* Destaques do Markdown (:::nota, :::aviso, :::dica): rótulo em texto, não só ícone ou cor */
+.destaque { padding: 1rem 1.25rem; border: 1px solid var(--line); border-left: 3px solid var(--fg); border-radius: 0 12px 12px 0; background: var(--bg2); }
+.destaque > * + * { margin-top: .75em; }
+.destaque-titulo { font-family: var(--display); text-transform: uppercase; letter-spacing: .12em; color: var(--fg); }
+.destaque-aviso { border-left-style: double; border-left-width: 5px; }
+.prosa pre[data-lang] { position: relative; padding-top: 2rem; }
+.prosa pre[data-lang]::before { content: attr(data-lang); position: absolute; top: .6rem; left: 1.25rem; color: var(--mute); font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; }
+
+.artigo-tags { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1rem; max-width: 70ch; margin-bottom: 2rem; }
+.artigo-tags .blog-tags { margin: 0; }
+
+.leia-tambem { max-width: 70ch; margin-bottom: clamp(3rem, 8vw, 5rem); }
+.leia-tambem h2 { margin-bottom: 1rem; font-family: var(--display); text-transform: uppercase; font-size: 2rem; font-weight: 400; }
+.leia-tambem ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.leia-tambem li { display: grid; gap: .25rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+.leia-tambem a { color: var(--fg); font-size: 1.125rem; font-weight: 600; text-underline-offset: 4px; }
+.leia-tambem-meta { color: var(--mute); font-size: .875rem; }
+
+/* Imagem do post (md.js): largura e altura no HTML, então o espaço já fica reservado (CLS 0) */
+.prosa figure { margin: 2rem 0; }
+.prosa figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--bg2); }
+.prosa figcaption { margin-top: .625rem; color: var(--mute); font-size: .875rem; }
+
+/* Autores (components/Autores.jsx): avatar redondo; no grupo, sobreposto com anel na cor do fundo (estilo "ring" do AvatarGroup) */
+.avatar { display: inline-grid; flex: none; place-items: center; width: var(--tam); height: var(--tam); overflow: hidden; border-radius: 50%; background: var(--bg2); color: var(--fg); font-size: calc(var(--tam) * .38); font-weight: 600; }
+.avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.por-autores { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .5rem; vertical-align: middle; }
+.avatar-grupo { display: inline-flex; }
+.avatar-grupo .avatar { box-shadow: 0 0 0 2px var(--bg); }
+.avatar-grupo .avatar + .avatar { margin-left: -.5rem; }
+.quem-escreveu { margin: 3rem 0 0; padding-top: 2rem; border-top: 1px solid var(--line); }
+.quem-escreveu ul { display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+.quem-escreveu li { display: flex; align-items: center; gap: .875rem; }
+.quem-escreveu li > span:last-child { display: grid; }
+.quem-escreveu a { font-weight: 600; }
+.quem-cargo { color: var(--mute); font-size: .875rem; }

@@ -1,0 +1,27 @@
+{
+  "status": "rascunho",
+  "ordem": 5,
+  "tipo": "Projeto interno",
+  "titulo": "Infraestrutura própria",
+  "resumo": "Servidor VPS com Docker e Caddy rodando o CRM da RDG, as automações em n8n e o monitoramento de disponibilidade com Uptime Kuma.",
+  "contexto": "A operação da RDG depende de CRM, automações, WhatsApp e de saber quando algo cai.",
+  "problema": "Cada ferramenta em um serviço diferente espalha os dados e dificulta o controle sobre onde tudo roda.",
+  "feito": [
+    "Servidor VPS com Docker e Caddy.",
+    "Nele rodam o CRM da RDG (Evo CRM), as automações em n8n e a API de WhatsApp (Evolution).",
+    "Monitoramento de disponibilidade com Uptime Kuma.",
+    "Acesso ao servidor só por chave SSH."
+  ],
+  "stack": [
+    "VPS",
+    "Docker",
+    "Caddy",
+    "Evo CRM",
+    "n8n",
+    "Evolution API",
+    "Uptime Kuma",
+    "SSH"
+  ],
+  "aprendemos": "Colocar cada serviço no próprio contêiner, atrás de um único Caddy, deixa o servidor mais simples de manter. E o monitoramento avisa antes de alguém reclamar.",
+  "destaque_home": true
+}

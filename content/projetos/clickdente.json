@@ -1,0 +1,64 @@
+{
+  "status": "publicado",
+  "ordem": 5,
+  "tipo": "Case de cliente",
+  "titulo": "ClickDente: mais conversa no WhatsApp com menos verba",
+  "cliente": "ClickDente",
+  "autorizacao_cliente": "Divulgação do case autorizada no contrato com a ClickDente (Akassia), sem valores financeiros. Confirmado pelo Márcio em 2026-10-28.",
+  "segmento": "Clínica odontológica",
+  "cidade": "Governador Valadares (MG)",
+  "servicos": [
+    "trafego"
+  ],
+  "capa": {
+    "cor": "#51257c"
+  },
+  "periodo": "agosto a outubro de 2026",
+  "resumo": "Clínica odontológica que já anunciava antes da RDG. Com as campanhas refeitas, o custo por conversa no WhatsApp caiu e o volume por mês subiu, com menos verba.",
+  "infografico": {
+    "desafio": "Custo por conversa no maior nível em 18 meses",
+    "acao": "Campanhas refeitas, com teste e corte por rodada",
+    "valor": "-55%",
+    "resultado": "no custo por conversa, contra junho"
+  },
+  "contexto": "A ClickDente, clínica odontológica em Governador Valadares (MG), já anunciava no Meta Ads levando ao WhatsApp. A RDG assumiu as campanhas em agosto de 2026, depois de um mês com os anúncios parados.",
+  "problema": "Em junho de 2026, último mês antes da RDG, o custo por conversa no WhatsApp estava no maior nível dos 18 meses anteriores, e uma das campanhas pagava quase 5 vezes a média que a conta paga hoje. Em julho, os anúncios pararam.",
+  "feito": [
+    "Estrutura de campanhas refeita, focada em conversa no WhatsApp.",
+    "Testes de público e de criativo em campanhas separadas, com as mais caras pausadas a cada rodada.",
+    "Em outubro, uma campanha de alcance para a marca chegar a mais gente da região, ao lado das campanhas de conversa.",
+    "Custo por conversa acompanhado mês a mês e comparado com o histórico da própria conta."
+  ],
+  "stack": [
+    "Meta Ads",
+    "WhatsApp"
+  ],
+  "resultados": [
+    {
+      "valor": "-55%",
+      "rotulo": "no custo por conversa contra junho, último mês antes da RDG (Meta Ads)"
+    },
+    {
+      "valor": "+5%",
+      "rotulo": "conversas por mês no WhatsApp, com 11% menos verba por mês (Meta Ads)"
+    }
+  ],
+  "grafico": {
+    "titulo": "Custo por conversa no WhatsApp",
+    "nota": "Índice: junho de 2026, último mês sem a RDG = 100. Menor é melhor. Fonte: Meta Ads.",
+    "barras": [
+      {
+        "rotulo": "Junho, sem a RDG",
+        "valor": 100,
+        "rdg": false
+      },
+      {
+        "rotulo": "Média com a RDG",
+        "valor": 45,
+        "rdg": true
+      }
+    ]
+  },
+  "aprendemos": "Agosto teve o menor custo, cerca de metade da média do período. Com mais verba em setembro e outubro, o custo por conversa subiu: o ganho está na média e no volume, e comparar com o histórico da própria conta mostra até onde vale aumentar.",
+  "destaque_home": false
+}

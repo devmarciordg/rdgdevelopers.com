@@ -1,0 +1,8 @@
+Bebas Neue
+Copyright 2019 The Bebas Neue Project Authors (https://github.com/dharmatype/Bebas-Neue)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is available with a FAQ at: https://openfontlicense.org
+
+Arquivo bebas-neue.woff2: subconjunto (Latin-1 e pontuação) gerado com fonttools a partir de
+BebasNeue-Regular.ttf do repositório google/fonts.

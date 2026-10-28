@@ -1,0 +1,30 @@
+{
+  "status": "rascunho",
+  "ordem": 4,
+  "tipo": "Estudo técnico",
+  "titulo": "Este site",
+  "resumo": "Construído com Vite e React só no build, sem JavaScript na maior parte das páginas. Lighthouse 100 nos 4 eixos na medição de 26/10/2026.",
+  "contexto": "O site da RDG é a primeira coisa que um cliente vê da gente. Se a gente vende sites rápidos, o nosso precisa ser um.",
+  "problema": "Sites feitos com framework costumam mandar muito JavaScript para o navegador, o que deixa a página lenta no celular. E banner de cookies e formulário quase sempre vêm de bibliotecas pesadas.",
+  "feito": [
+    "Vite e React usados só no build: cada rota é pré-renderizada em HTML estático.",
+    "No navegador vão o HTML, um CSS (cerca de 5 KB comprimido) e cerca de 1,3 KB de JavaScript comprimido, em JS puro, só para o formulário e o consentimento de cookies.",
+    "Fotos em AVIF e WebP.",
+    "Fonte Bebas Neue recortada só com os caracteres do português.",
+    "Consentimento de cookies com Google Consent Mode v2, negado por padrão."
+  ],
+  "stack": [
+    "Vite",
+    "React (só no build)",
+    "HTML estático",
+    "CSS",
+    "JavaScript puro",
+    "Google Consent Mode v2"
+  ],
+  "aprendemos": "Dá para usar React para organizar o código sem mandar React para o visitante. Na medição de 26/10/2026, em ambiente de teste, o Lighthouse deu 100 nos 4 eixos.",
+  "link": {
+    "href": "/performance",
+    "texto": "Ver a medição e como conferir"
+  },
+  "destaque_home": true
+}

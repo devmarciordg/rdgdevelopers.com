@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projeto.schema.json",
+  "title": "Projeto",
+  "description": "content/projetos/<id>.json. Projeto próprio da RDG ou case de cliente. Case exige cliente e autorização registrada; com resultados, exige também o período (a página mostra o aviso de que não é promessa).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "ordem", "tipo", "titulo", "resumo", "contexto", "problema", "feito", "stack", "aprendemos"],
+  "properties": {
+    "status": { "type": "string", "title": "Status", "enum": ["rascunho", "publicado"] },
+    "ordem": { "type": "integer", "title": "Ordem", "description": "Menor aparece primeiro." },
+    "tipo": { "type": "string", "title": "Tipo", "enum": ["Estudo técnico", "Projeto interno", "Case de cliente"] },
+    "titulo": { "type": "string", "title": "Título", "minLength": 3, "maxLength": 60 },
+    "resumo": { "type": "string", "title": "Resumo", "description": "Texto do card na home.", "minLength": 40, "maxLength": 220 },
+    "infografico": {
+      "type": "object", "title": "Infográfico", "description": "O case em 3 passos curtos, para entender de relance no card e no topo do case. O valor é o destaque do resultado; número só se estiver também em resultados.",
+      "additionalProperties": false, "required": ["desafio", "acao", "valor", "resultado"],
+      "properties": {
+        "desafio": { "type": "string", "title": "Desafio", "minLength": 10, "maxLength": 45 },
+        "acao": { "type": "string", "title": "O que fizemos", "minLength": 10, "maxLength": 50 },
+        "valor": { "type": "string", "title": "Valor em destaque", "description": "Número ou palavra curta do resultado (ex.: +64%, 137, No ar). Com número, precisa ser igual a um valor de resultados.", "minLength": 2, "maxLength": 10 },
+        "resultado": { "type": "string", "title": "Complemento do resultado", "description": "O resto da frase depois do valor (ex.: de faturamento em 24 dias).", "minLength": 10, "maxLength": 45 }
+      }
+    },
+    "contexto": { "type": "string", "title": "Contexto", "minLength": 20 },
+    "problema": { "type": "string", "title": "O problema", "minLength": 20 },
+    "feito": { "type": "array", "title": "O que foi feito", "minItems": 1, "maxItems": 8, "items": { "type": "string", "minLength": 5 } },
+    "stack": { "type": "array", "title": "Stack", "minItems": 1, "maxItems": 10, "uniqueItems": true, "items": { "type": "string" } },
+    "aprendemos": { "type": "string", "title": "O que aprendemos", "minLength": 20 },
+    "link": {
+      "type": "object", "title": "Link", "description": "Opcional: botão no fim do projeto e destino do card da home.",
+      "additionalProperties": false, "required": ["href", "texto"],
+      "properties": { "href": { "type": "string", "pattern": "^/" }, "texto": { "type": "string", "minLength": 3 } }
+    },
+    "cliente": { "type": "string", "title": "Cliente", "description": "Só em case de cliente: nome como o cliente autorizou aparecer.", "minLength": 2 },
+    "autorizacao_cliente": { "type": "string", "title": "Autorização do cliente", "description": "Onde está a autorização do cliente para citar o nome, a logo e os números (ex.: contrato RDG-2026-003, cláusula 9, ou áudio no WhatsApp da RDG de tal data). Nunca o documento ou o áudio em si.", "minLength": 10 },
+    "segmento": { "type": "string", "title": "Segmento", "description": "Só em case de cliente: tipo de negócio (ex.: Delivery de comida, E-commerce). Aparece no card e no topo do case.", "minLength": 3, "maxLength": 30 },
+    "cidade": { "type": "string", "title": "Cidade", "description": "Opcional, formato Cidade (UF). Só se o cliente autorizou e ajuda a entender o case.", "pattern": "^.+ \\([A-Z]{2}\\)$" },
+    "servicos": { "type": "array", "title": "Serviços", "description": "Serviços da RDG usados no case: sites, trafego, rastreamento, automacao, google ou software (os de src/servicos.js). Liga o case à página do serviço.", "minItems": 1, "maxItems": 3, "uniqueItems": true, "items": { "type": "string" } },
+    "capa": {
+      "type": "object", "title": "Capa", "description": "Cor de fundo do card do case enquanto não há imagem. A cor do texto (preto ou branco) é escolhida sozinha pelo contraste.",
+      "additionalProperties": false, "required": ["cor"],
+      "properties": { "cor": { "type": "string", "title": "Cor", "description": "Hex minúsculo, ex.: #b42318.", "pattern": "^#[0-9a-f]{6}$" } }
+    },
+    "periodo": { "type": "string", "title": "Período", "description": "Quando o trabalho e os resultados aconteceram (ex.: janeiro a abril de 2026).", "minLength": 4 },
+    "resultados": {
+      "type": "array", "title": "Resultados", "description": "Só números que o cliente autorizou e que você consegue comprovar com relatório.", "maxItems": 3,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["valor", "rotulo"],
+        "properties": { "valor": { "type": "string", "maxLength": 12 }, "rotulo": { "type": "string", "minLength": 5, "maxLength": 80 } }
+      }
+    },
+    "grafico": {
+      "type": "object", "title": "Gráfico", "description": "Opcional: barras do resultado na página do case. Use índice (ponto de partida = 100), nunca valor em reais. Barras da RDG ficam em destaque.",
+      "additionalProperties": false, "required": ["titulo", "nota", "barras"],
+      "properties": {
+        "titulo": { "type": "string", "title": "Título", "minLength": 5, "maxLength": 60 },
+        "nota": { "type": "string", "title": "Base e fonte", "description": "Diga a base do índice, se menor é melhor e de onde vêm os dados.", "minLength": 10, "maxLength": 140 },
+        "barras": {
+          "type": "array", "title": "Barras", "minItems": 2, "maxItems": 8,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["rotulo", "valor"],
+            "properties": { "rotulo": { "type": "string", "maxLength": 30 }, "valor": { "type": "number" }, "rdg": { "type": "boolean", "title": "Período com a RDG" } }
+          }
+        }
+      }
+    },
+    "site": {
+      "type": "object", "title": "Site do cliente", "description": "Opcional: link para o projeto no ar.",
+      "additionalProperties": false, "required": ["href", "texto"],
+      "properties": { "href": { "type": "string", "pattern": "^https://" }, "texto": { "type": "string", "minLength": 3 } }
+    },
+    "destaque_home": { "type": "boolean", "title": "Mostrar na home" }
+  }
+}

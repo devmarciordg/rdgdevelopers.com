@@ -1,0 +1,41 @@
+{
+  "status": "publicado",
+  "ordem": 3,
+  "tipo": "Case de cliente",
+  "titulo": "Bons de Pista: loja virtual para motoristas de app",
+  "cliente": "Bons de Pista (Amanda Paiva)",
+  "autorizacao_cliente": "Áudio de autorização do cliente no WhatsApp da RDG, recebido pelo Márcio (registrado em 2026-10-27). Cobre nome, logo e números do case.",
+  "segmento": "E-commerce",
+  "servicos": [
+    "sites"
+  ],
+  "capa": {
+    "cor": "#0f1f3d"
+  },
+  "periodo": "2026",
+  "resumo": "Loja na Nuvemshop para a influenciadora Amanda Paiva vender ao público dela, de motoristas de aplicativo, com compra rápida pelo celular.",
+  "infografico": {
+    "desafio": "Audiência grande e nenhuma loja",
+    "acao": "Loja na Nuvemshop pensada para o celular",
+    "valor": "No ar",
+    "resultado": "em bonsdepista.com"
+  },
+  "contexto": "A influenciadora Amanda Paiva fala com motoristas de aplicativo sobre a rotina de quem roda e queria transformar essa audiência em vendas.",
+  "problema": "O público compra pelo celular, no intervalo entre uma corrida e outra. A loja precisava passar confiança logo de cara e levar ao pagamento sem etapa sobrando.",
+  "feito": [
+    "Loja construída na Nuvemshop, pensada primeiro para o celular.",
+    "Categorias e chamadas para ação organizadas para a compra rápida, com o mínimo de passos até o pagamento.",
+    "Logotipo feito em conjunto com a Aztro (aztrodc.com)."
+  ],
+  "stack": [
+    "Nuvemshop",
+    "UX/UI",
+    "CRO"
+  ],
+  "site": {
+    "href": "https://bonsdepista.com/",
+    "texto": "Ver a loja no ar"
+  },
+  "aprendemos": "Quando a audiência já existe, o trabalho é tirar atrito: cada etapa a menos entre o post e o pagamento conta.",
+  "destaque_home": true
+}
