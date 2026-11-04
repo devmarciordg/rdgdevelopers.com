@@ -48,7 +48,7 @@ export const paginasDoConteudo = [
   ...projetos.map((p) => ({
     rota: p.rota,
     // O case termina no próprio convite, ligado ao serviço: sem o convite repetido no rodapé
-    meta: { titulo: p.titulo, descricao: p.resumo, semConvite: true, imagem: `/og/projetos/${p.id}.png`, schema: [caso(p), breadcrumb([['Projetos', '/projetos'], [p.cliente, p.rota]])] },
+    meta: { titulo: p.titulo, descricao: p.resumo, semConvite: true, imagem: `/og/projetos/${p.id}.png`, schema: [caso(p), breadcrumb([['Projetos', '/projetos'], [p.cliente ?? p.titulo, p.rota]])] },
     Pagina: () => <Case p={p} />,
   })),
 ]

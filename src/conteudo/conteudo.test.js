@@ -1,6 +1,9 @@
 // npm test (node:test, sem dependência)
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
+import { readdirSync, readFileSync } from 'node:fs'
+import { carregar } from './carregar.js'
+import { casa, contar, opcoes } from './filtros.js'
 import { md } from './md.js'
 import { frontmatter, serializar } from './frontmatter.js'
 import { validar } from './validar.js'
@@ -71,4 +74,31 @@ test('md: imagem em linha própria, com descrição e tamanho no nome', () => {
   assert.deepEqual(erro('![x](/blog/img/sem-tamanho.webp)'), ['imagem'])
   assert.deepEqual(erro('veja ![x](/blog/img/a-10x10.webp) aqui'), ['imagem'])
   assert.equal(md('![a" onerror="x](/blog/img/a-10x10.webp)').html.includes('onerror="'), false)
+})
+
+test('projetos: case de estudo fica junto, sem se passar por cliente', () => {
+  const arquivos = {}
+  for (const nome of ['content/taxonomia.json', 'content/autores.json', 'content/termos-vetados.json', ...readdirSync('content/_schemas').map((a) => `content/_schemas/${a}`), ...readdirSync('content/projetos').map((a) => `content/projetos/${a}`)]) {
+    arquivos[nome] = readFileSync(nome, 'utf8')
+  }
+  const { projetos } = carregar(arquivos)
+  const estudo = projetos.find((p) => p.id === 'apex-contabilidade')
+  assert.equal(estudo.cliente, undefined) // sem cliente, o card mostra a tag
+  assert.equal(estudo.destaque_home, false) // a home diz "Resultados de clientes"
+  assert.equal(estudo.outros.length, 2)
+})
+
+test('filtros: combina facetas, aceita mais de um serviço e conta sem a própria faceta', () => {
+  const cards = [
+    { servico: 'Sites|Tráfego pago', setor: 'Saúde', nicho: 'Clínica', tipo: 'Cliente' },
+    { servico: 'Tráfego pago', setor: 'Alimentação', nicho: 'Delivery', tipo: 'Cliente' },
+    { servico: 'Sites', setor: 'Alimentação', nicho: 'Sorveteria', tipo: 'Case de estudo' },
+  ]
+  assert.equal(casa(cards[0], { servico: 'Sites' }), true)
+  assert.equal(casa(cards[1], { servico: 'Sites' }), false)
+  assert.equal(casa(cards[2], { servico: 'Sites', setor: 'Saúde' }), false)
+  assert.equal(casa(cards[2], {}), true)
+  assert.equal(contar(cards, { setor: 'Alimentação' }, 'servico', 'Sites'), 1)
+  assert.equal(contar(cards, { setor: 'Alimentação' }, 'setor', 'Saúde'), 1) // troca a faceta, não soma
+  assert.deepEqual(opcoes(cards, 'servico'), ['Sites', 'Tráfego pago'])
 })

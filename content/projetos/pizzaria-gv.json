@@ -6,6 +6,7 @@
   "cliente": "Pizzaria em Governador Valadares",
   "autorizacao_cliente": "Cliente não autorizou a divulgação do nome: case publicado sem identificar a pizzaria, só com segmento e cidade (combinado com o Márcio em 2026-10-27).",
   "segmento": "Pizzaria com delivery",
+  "setor": "Alimentação",
   "cidade": "Governador Valadares (MG)",
   "servicos": [
     "trafego"

@@ -1,0 +1,46 @@
+{
+  "status": "publicado",
+  "ordem": 20,
+  "tipo": "Estudo técnico",
+  "titulo": "Apex Contabilidade: case de estudo",
+  "resumo": "Case de estudo da RDG: site institucional de uma contabilidade fictícia. Não é cliente: números, depoimentos e selos do site são ilustrativos.",
+  "infografico": {
+    "desafio": "Site de contabilidade B2B de ponta a ponta",
+    "acao": "Protocolo RDG, simulador e painel animado",
+    "valor": "No ar",
+    "resultado": "como case de estudo, sem cliente real"
+  },
+  "contexto": "A RDG usa cases de estudo para testar processo e técnica sem colocar um cliente em risco. Neste, o briefing descreve uma empresa fictícia de contabilidade consultiva para empresas de Lucro Presumido e Lucro Real.",
+  "problema": "Um site de contabilidade precisa passar confiança sem prometer resultado, explicar tributos com clareza e continuar rápido com simulador, formulários e animação. As regras de publicidade da profissão ainda limitam o que o texto pode dizer.",
+  "feito": [
+    "Site de 20 páginas em React e Vite, com HTML próprio para cada rota.",
+    "Simulador que compara Simples Nacional, Lucro Presumido e Lucro Real no navegador, com as premissas abertas na página.",
+    "Formulário de contato em 3 etapas e portal do cliente simulados: nada do que é digitado sai do navegador.",
+    "Painel animado na primeira dobra, com botão de pausa e respeito à preferência de movimento reduzido.",
+    "Textos escritos seguindo as regras de publicidade da NBC PG 01, sem promessa de resultado.",
+    "Selo de exemplar de estudo em toda página, e a marcação noindex para ficar fora dos buscadores."
+  ],
+  "stack": [
+    "React 19",
+    "Vite 8",
+    "Tailwind CSS 4",
+    "TypeScript",
+    "Web Animations API",
+    "Caddy"
+  ],
+  "aprendemos": "O Lighthouse e o axe deram nota máxima em acessibilidade e mesmo assim não acusaram dois problemas de contraste, achados só na medição direta do foco e das barras do gráfico. Nota alta não dispensa conferir à mão.",
+  "segmento": "Contabilidade",
+  "setor": "Serviços profissionais",
+  "servicos": [
+    "sites"
+  ],
+  "capa": {
+    "cor": "#1e3a8a"
+  },
+  "periodo": "novembro de 2026",
+  "site": {
+    "href": "https://apex-estudo.rdgdevelopers.com/",
+    "texto": "Abrir o site do estudo"
+  },
+  "destaque_home": false
+}

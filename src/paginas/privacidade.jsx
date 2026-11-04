@@ -89,10 +89,12 @@ export default function Privacidade() {
             de marketing (Google e Meta) só são usados com o seu consentimento e somente quando essas ferramentas estiverem
             ativadas no site. Os detalhes estão na <a href="/cookies">Política de Cookies</a>.
           </p>
-          <h3>e) Conversas pelo WhatsApp</h3>
+          <h3>e) Conversas pelo WhatsApp, Messenger e Instagram Direct</h3>
           <p>
-            Se você falar com a gente pelo WhatsApp, a conversa também é tratada pela Meta, dona do WhatsApp, conforme a política
-            de privacidade dela.
+            Quando você conversa com a RDG por esses canais, recebemos seu nome de perfil, o identificador da conta, a foto de
+            perfil e o conteúdo das mensagens. Usamos esses dados só para responder o atendimento, guardar o histórico da conversa
+            e dar continuidade a propostas. Podemos usar ferramentas de inteligência artificial para sugerir respostas à nossa
+            equipe. A conversa também é tratada pela Meta, dona desses aplicativos, conforme a política de privacidade dela.
           </p>
 
           <h2 id="bases-legais">3. Bases legais</h2>
@@ -133,6 +135,11 @@ export default function Privacidade() {
           <p>
             Para exercer qualquer um desses direitos, envie um e-mail para <Email />. Respondemos dentro dos prazos previstos na
             LGPD.
+          </p>
+          <h3 id="exclusao">Exclusão de dados</h3>
+          <p>
+            Para excluir seus dados, envie um e-mail para <Email /> com o assunto "Exclusão de dados", informando seu nome e o
+            canal usado (site, WhatsApp, Messenger ou Instagram). A exclusão é feita em até 15 dias.
           </p>
 
           <h2 id="seguranca">6. Segurança</h2>

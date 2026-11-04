@@ -131,7 +131,7 @@ export function carregar(arquivos, hoje = new Date().toISOString().slice(0, 10))
     if (caso && !(p.cliente && p.autorizacao_cliente)) erros.push(`${arq}: case de cliente exige cliente e autorizacao_cliente`)
     if (!caso && (p.cliente || p.resultados)) erros.push(`${arq}: cliente e resultados só valem em tipo "Case de cliente"`)
     if (p.resultados?.length && !p.periodo) erros.push(`${arq}: resultados exigem periodo`)
-    if (caso && p.status === 'publicado' && !(p.capa && p.servicos && p.segmento && p.infografico)) erros.push(`${arq}: case publicado exige capa, servicos, segmento e infografico`)
+    if (p.status === 'publicado' && !(p.capa && p.servicos && p.segmento && p.setor && p.infografico)) erros.push(`${arq}: projeto publicado exige capa, servicos, segmento, setor e infografico`)
     // Número do infográfico fora de resultados escaparia do aviso e da conferência de período
     const valor = p.infografico?.valor ?? ''
     if (/\d/.test(valor) && !p.resultados?.some((r) => r.valor === valor)) erros.push(`${arq} infografico.valor: "${valor}" não está em resultados`)
@@ -153,7 +153,7 @@ export function carregar(arquivos, hoje = new Date().toISOString().slice(0, 10))
     }
   }
   projetos.sort((a, b) => a.ordem - b.ordem)
-  // Outros cases: primeiro os que dividem serviço, depois a ordem
+  // Outros cases: primeiro os que dividem serviço, depois a ordem. Case de estudo vai junto, sempre com a tag no card
   for (const p of projetos) {
     const comum = (o) => o.servicos.filter((s) => p.servicos.includes(s)).length
     p.outros = projetos.filter((o) => o !== p).sort((a, b) => comum(b) - comum(a) || a.ordem - b.ordem).slice(0, 2)

@@ -88,7 +88,7 @@ export const caso = (p) => ({
   description: p.resumo,
   url: SITE + p.rota,
   inLanguage: 'pt-BR',
-  about: { '@type': 'Organization', name: p.cliente },
+  ...(p.cliente && { about: { '@type': 'Organization', name: p.cliente } }),
   creator: { '@id': ORG_ID },
 })
 

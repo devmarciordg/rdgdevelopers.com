@@ -1,11 +1,9 @@
 import Icone from './Icone.jsx'
+import { valoresDoCase } from '../conteudo/filtros.js'
 import '../styles/projetos.css'
 
-// CDC art. 37 e CONAR: número de um cliente sempre acompanhado deste aviso, onde quer que apareça
+// CDC art. 37 e CONAR: número de um cliente sempre acompanhado deste aviso. Por isso o card não mostra número
 export const avisoResultado = (p) => `Resultado deste cliente, no período citado (${p.periodo}). Não é promessa: cada negócio tem verba, região e oferta diferentes.`
-// No card cabe a versão curta, colada ao número; a completa fica no case, junto dos números e da fonte
-const avisoCurto = (p) => `Resultado deste cliente, campanha de ${p.periodo}. Não é promessa.`
-
 // Capa feita da logo por scripts/capas.py (src/assets/projetos/<id>-800|1600). Sem arquivo, fica a capa de cor com o nome
 const imagens = import.meta.glob('../assets/projetos/*.{avif,webp}', { eager: true, import: 'default' })
 const arq = (id, w, tipo) => imagens[`../assets/projetos/${id}-${w}.${tipo}`]
@@ -33,41 +31,40 @@ export function Capa({ p, grande }) {
 }
 
 // O case de relance: desafio, o que fizemos e resultado. Lista ordenada: a ordem é a história.
-// grande (topo do case): 3 colunas com ícone. Card: sem ícone, resultado num painel com o valor em destaque e o aviso curto colado
+// Só no topo do case, em 3 colunas com ícone: o card mostra apenas capa, título e nicho
 const PASSOS = [['desafio', 'Desafio'], ['acao', 'O que fizemos']]
 const Rotulo = ({ children }) => <span className="info-rotulo">{children}<span className="sr-only">: </span></span>
-export const Infografico = ({ p, grande }) => {
+export const Infografico = ({ p }) => {
   const { valor, resultado } = p.infografico
   return (
-    <ol className={`info${grande ? ' info-grande' : ''}`} {...(grande && { 'aria-label': `${p.cliente} em 3 passos`, style: { '--c': p.capa.cor } })}>
+    <ol className="info info-grande" aria-label={`${p.cliente ?? p.titulo} em 3 passos`} style={{ '--c': p.capa.cor }}>
       {PASSOS.map(([k, rotulo]) => (
         <li key={k} className={`info-${k}`}>
-          {grande && <Icone nome={k} tamanho={28} />}
+          <Icone nome={k} tamanho={28} />
           <Rotulo>{rotulo}</Rotulo>
           <span className="info-texto">{p.infografico[k]}</span>
         </li>
       ))}
       <li className="info-resultado">
-        {grande && <Icone nome="resultado" tamanho={28} />}
+        <Icone nome="resultado" tamanho={28} />
         <Rotulo>Resultado</Rotulo>
         <span className="info-texto"><strong className="info-valor">{valor}</strong> {resultado}</span>
-        {!grande && /\d/.test(valor) && <span className="case-aviso">{avisoCurto(p)}</span>}
       </li>
     </ol>
   )
 }
 
-// Card de case (home, /projetos e "outros cases"). Um link só, no título, esticado sobre o card inteiro.
-// O h3 vem antes do segmento no HTML (quem navega por título não pula nada); o CSS sobe o segmento com order
+// Card de case (home, /projetos e "outros cases"): capa, título e nicho. Um link só, no título, esticado sobre o card inteiro.
+// O h3 vem antes do nicho no HTML (quem navega por título não pula nada); o CSS sobe o nicho com order
 export default function CaseCard({ p, Titulo = 'h3' }) {
+  const v = valoresDoCase(p)
   return (
-    <li className="case">
+    <li className="case" data-servico={v.servico} data-setor={v.setor} data-nicho={v.nicho} data-tipo={v.tipo}>
+      {!p.cliente && <p className="case-tag">Case de estudo</p>}
       <Capa p={p} />
       <div className="case-corpo">
         <Titulo><a href={p.rota}>{p.titulo}</a></Titulo>
-        <p className="case-meta">{p.segmento}</p>
-        <Infografico p={p} />
-        <span className="link-seta case-seta" aria-hidden="true">Ver o case <Icone nome="seta" tamanho={16} /></span>
+        <p className="case-meta">{p.segmento} · {p.servicos[0].titulo}</p>
       </div>
     </li>
   )

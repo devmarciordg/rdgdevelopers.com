@@ -1,8 +1,8 @@
 # Gera as capas dos cases (src/assets/projetos/<id>-800|1600.avif|webp) e a imagem de compartilhamento
 # (public/og/projetos/<id>.png) a partir das logos em interno/logos. Roda à mão quando chega logo nova:
-#   python3 scripts/capas.py   (precisa de rsvg-convert, magick, avifenc e cwebp; não roda no CI)
+#   python3 scripts/capas.py [id ...]   (sem id, refaz todas; precisa de rsvg-convert, magick, avifenc e cwebp; não roda no CI)
 # Estilo dos cards do site: fundo na cor do case, textura de grade no canto e a logo centralizada.
-import json, subprocess, tempfile
+import json, subprocess, sys, tempfile
 from pathlib import Path
 from PIL import Image, ImageDraw
 
@@ -15,6 +15,8 @@ LOGOS = {
     # Cliente não autorizou o nome nem a logo: fatia de pizza desenhada no lugar
     'pizzaria-gv': ('pizzaria-gv.svg', 'claro', .5),
     'clickdente': ('clickdente.svg', 'claro', .55),
+    # Empresa fictícia, exemplar de estudo da RDG
+    'apex-contabilidade': ('apex-contabilidade.svg', 'original', .42),
 }
 
 def rgb(h): return tuple(int(h[i:i + 2], 16) for i in (1, 3, 5))
@@ -56,7 +58,7 @@ def capa(id, cor, l, w, h, tmp):
     return base.convert('RGB')
 
 with tempfile.TemporaryDirectory() as tmp:
-    for id in LOGOS:
+    for id in sys.argv[1:] or LOGOS:
         cor = json.loads((RAIZ / f'content/projetos/{id}.json').read_text())['capa']['cor']
         for w in (800, 1600):
             png = Path(tmp) / f'{id}-{w}.png'

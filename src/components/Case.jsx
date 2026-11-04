@@ -13,16 +13,19 @@ const Secao = ({ id, titulo, children }) => (
 )
 
 export default function Case({ p }) {
-  const whatsapp = `${empresa.whatsappLink.split('?')[0]}?text=${encodeURIComponent(`Olá! Vi o case ${p.cliente} no site da RDG e quero algo parecido.`)}`
+  const estudo = !p.cliente
+  const assunto = estudo ? `o case de estudo ${p.titulo.split(':')[0]}` : `o case ${p.cliente}`
+  const whatsapp = `${empresa.whatsappLink.split('?')[0]}?text=${encodeURIComponent(`Olá! Vi ${assunto} no site da RDG e quero algo parecido.`)}`
   const servico = p.servicos[0]
   return (
     <>
-      <CabecalhoPagina trilha={[['Projetos', '/projetos'], [p.cliente]]} rotulo="Case de cliente" titulo={p.titulo} sub={p.resumo} />
+      <CabecalhoPagina trilha={[['Projetos', '/projetos'], [p.cliente ?? p.titulo]]} rotulo={estudo ? 'Case de estudo' : 'Case de cliente'} titulo={p.titulo} sub={p.resumo} />
 
       <section className="secao sem-numero case-relance" aria-labelledby="relance-titulo">
         <div className="wrap">
           <h2 id="relance-titulo" className="sr-only">O case de relance</h2>
-          <Infografico p={p} grande />
+          {estudo && <p className="case-aviso">Case de estudo da RDG. A empresa é fictícia: não é cliente, e não há resultado real de negócio aqui.</p>}
+          <Infografico p={p} />
           {p.resultados?.length > 0 && <p className="case-aviso">{avisoResultado(p)}</p>}
           {p.grafico && <Grafico g={p.grafico} />}
         </div>
@@ -33,7 +36,7 @@ export default function Case({ p }) {
           <Capa p={p} grande />
           <div>
             <dl className="case-ficha">
-              <div><dt>Cliente</dt><dd>{p.cliente}</dd></div>
+              <div><dt>{estudo ? 'Tipo' : 'Cliente'}</dt><dd>{p.cliente ?? 'Case de estudo'}</dd></div>
               <div><dt>Segmento</dt><dd>{p.segmento}</dd></div>
               {p.cidade && <div><dt>Cidade</dt><dd>{p.cidade}</dd></div>}
               <div><dt>Período</dt><dd>{p.periodo}</dd></div>
@@ -48,7 +51,7 @@ export default function Case({ p }) {
               </>
             )}
             <p className="case-acoes">
-              {p.site && <a className="btn btn-sm" href={p.site.href} rel="noopener">{p.site.texto}<span className="sr-only"> (abre o site do cliente)</span></a>}
+              {p.site && <a className="btn btn-sm" href={p.site.href} rel="noopener">{p.site.texto}<span className="sr-only"> (abre {estudo ? 'o site de estudo' : 'o site do cliente'})</span></a>}
               <a className="btn btn-sm ghost" href="#quero-parecido">Quero algo parecido</a>
               {/* Só aparece com a Clipboard API (ilha copiar.js); sem ela, o endereço da barra serve */}
               <button className="btn btn-sm ghost" type="button" data-copiar hidden>Copiar link do case</button>
