@@ -3,7 +3,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readdirSync, readFileSync } from 'node:fs'
 import { carregar } from './carregar.js'
-import { casa, contar, opcoes } from './filtros.js'
+import { casa, casaBusca, contar, opcoes, temTags } from './filtros.js'
 import { md } from './md.js'
 import { frontmatter, serializar } from './frontmatter.js'
 import { validar } from './validar.js'
@@ -100,5 +100,16 @@ test('filtros: combina facetas, aceita mais de um serviço e conta sem a própri
   assert.equal(casa(cards[2], {}), true)
   assert.equal(contar(cards, { setor: 'Alimentação' }, 'servico', 'Sites'), 1)
   assert.equal(contar(cards, { setor: 'Alimentação' }, 'setor', 'Saúde'), 1) // troca a faceta, não soma
+  assert.equal(contar(cards, { setor: 'Alimentação' }, 'servico', ''), 2) // "Todos" respeita o outro grupo
   assert.deepEqual(opcoes(cards, 'servico'), ['Sites', 'Tráfego pago'])
+})
+
+test('busca de tags: exige todas as escolhidas e ignora acento e maiúscula', () => {
+  assert.equal(temTags(['pixel', 'lgpd'], []), true)
+  assert.equal(temTags(['pixel', 'lgpd'], ['pixel', 'lgpd']), true)
+  assert.equal(temTags(['pixel'], ['pixel', 'lgpd']), false)
+  assert.equal(casaBusca('Domínio e hospedagem', ' dominio '), true)
+  assert.equal(casaBusca('Clínicas', 'CLÍN'), true)
+  assert.equal(casaBusca('Pixel', 'lgpd'), false)
+  assert.equal(casaBusca('Pixel', ''), true)
 })

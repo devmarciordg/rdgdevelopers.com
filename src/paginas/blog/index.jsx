@@ -22,7 +22,6 @@ export default function Blog() {
         sub: 'Textos diretos sobre rastreamento, tráfego, automação e sites rápidos, escritos por quem faz o trabalho.',
       }}
       posts={posts}
-      ativo="/blog"
     />
   )
 }

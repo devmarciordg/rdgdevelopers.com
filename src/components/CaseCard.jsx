@@ -59,7 +59,7 @@ export const Infografico = ({ p }) => {
 export default function CaseCard({ p, Titulo = 'h3' }) {
   const v = valoresDoCase(p)
   return (
-    <li className="case" data-servico={v.servico} data-setor={v.setor} data-nicho={v.nicho} data-tipo={v.tipo}>
+    <li className="case" data-servico={v.servico} data-setor={v.setor}>
       {!p.cliente && <p className="case-tag">Case de estudo</p>}
       <Capa p={p} />
       <div className="case-corpo">

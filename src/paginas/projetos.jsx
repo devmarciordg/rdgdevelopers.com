@@ -16,21 +16,23 @@ function Filtros() {
   const facetas = FACETAS.filter(([k]) => opcoes(cards, k).length > 1)
   return (
     <form className="filtros" data-filtros hidden aria-label="Filtrar cases">
-      <div className="filtros-grade">
-        {facetas.map(([k, rotulo]) => (
-          <div key={k}>
-            <label htmlFor={`filtro-${k}`}>{rotulo}</label>
-            <div className="filtros-sel">
-              <select id={`filtro-${k}`} name={k} defaultValue="">
-                <option value="">Todos</option>
-                {opcoes(cards, k).map((v) => <option key={v} value={v}>{v} ({contar(cards, {}, k, v)})</option>)}
-              </select>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="filtros-ativos" data-filtros-ativos></div>
+      {facetas.map(([k, rotulo]) => (
+        <div className="filtro" data-filtro key={k}>
+          <button type="button" aria-expanded="false" aria-controls={`filtro-${k}`}>
+            <span><span className="filtro-nome">{rotulo}:</span> <span data-filtro-valor>Todos</span></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </button>
+          <fieldset id={`filtro-${k}`} className="filtro-painel">
+            <legend className="sr-only">{rotulo}</legend>
+            {['', ...opcoes(cards, k)].map((v, i) => (
+              <label key={v} style={{ '--i': i }}>
+                <input type="radio" name={k} value={v} defaultChecked={!v} />
+                <span>{v || 'Todos'} <span className="filtros-n">{contar(cards, {}, k, v)}</span></span>
+              </label>
+            ))}
+          </fieldset>
+        </div>
+      ))}
     </form>
   )
 }

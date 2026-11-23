@@ -1,4 +1,4 @@
-// Filtros de /projetos, no padrão do app de leads: menus com contagem, chips dos ativos e "Limpar tudo".
+// Filtros de /projetos: um dropdown animado por grupo, com contagem. Por baixo são radios: teclado e leitor de tela vêm do navegador.
 // Sem JS, a barra fica oculta e todos os cases aparecem. Os filtros ficam na URL, para o link poder ser compartilhado.
 import { casa, contar, FACETAS } from '../conteudo/filtros.js'
 
@@ -9,73 +9,82 @@ if (form) {
   const cards = itens.map((el) => el.dataset)
   const status = document.querySelector('[data-filtros-status]')
   const textoInicial = status.textContent
-  const ativos = form.querySelector('[data-filtros-ativos]')
   const vazio = document.querySelector('[data-filtros-vazio]')
-  const selects = Object.fromEntries(FACETAS.map(([k]) => [k, form.elements[k]]).filter(([, s]) => s))
-  const nomes = Object.fromEntries(FACETAS)
-  const filtros = {}
+  const grupos = FACETAS.map(([k]) => k).filter((k) => form.elements[k])
+  const opcoes = [...form.querySelectorAll('input')]
+  const blocos = [...form.querySelectorAll('[data-filtro]')]
 
   const url = new URLSearchParams(location.search)
-  for (const [k, s] of Object.entries(selects)) {
-    const v = url.get(k)
-    if (v && [...s.options].some((o) => o.value === v)) { filtros[k] = v; s.value = v }
-  }
-
-  const botao = (texto, classe, aoClicar, rotulo) => {
-    const b = document.createElement('button')
-    b.type = 'button'
-    b.className = classe
-    b.textContent = texto
-    if (rotulo) b.setAttribute('aria-label', rotulo)
-    b.addEventListener('click', aoClicar)
-    return b
-  }
-
-  const limpar = () => {
-    for (const k of Object.keys(selects)) { delete filtros[k]; selects[k].value = '' }
-    atualizar()
-    Object.values(selects)[0].focus()
-  }
+  // Valor da URL que não existe nas opções não marca nada: o grupo fica em "Todos"
+  for (const k of grupos) if (url.get(k)) form.elements[k].value = url.get(k)
 
   function atualizar() {
+    const filtros = Object.fromEntries(grupos.map((k) => [k, form.elements[k].value]).filter(([, v]) => v))
+
     let visiveis = 0
     itens.forEach((el, i) => {
       el.hidden = !casa(cards[i], filtros)
       if (!el.hidden) visiveis++
     })
 
-    for (const [k, s] of Object.entries(selects)) {
-      for (const o of s.options) {
-        if (!o.value) continue
-        const n = contar(cards, filtros, k, o.value)
-        o.textContent = `${o.value} (${n})`
-        o.disabled = n === 0 && filtros[k] !== o.value
-      }
+    for (const o of opcoes) {
+      const n = contar(cards, filtros, o.name, o.value)
+      o.parentElement.querySelector('.filtros-n').textContent = n
+      o.disabled = n === 0 && !o.checked
     }
 
-    const escolhidos = Object.entries(filtros)
-    ativos.replaceChildren(
-      ...escolhidos.map(([k, v]) => botao(`${v} ×`, 'chip', () => {
-        delete filtros[k]
-        selects[k].value = ''
-        atualizar()
-        selects[k].focus()
-      }, `Remover filtro ${nomes[k]}: ${v}`)),
-      ...(escolhidos.length > 1 ? [botao('Limpar tudo', 'link-limpar', limpar)] : []),
-    )
-    status.textContent = escolhidos.length ? `${visiveis} de ${itens.length} cases` : textoInicial
+    for (const el of blocos) {
+      const v = el.querySelector('input:checked').value
+      el.querySelector('[data-filtro-valor]').textContent = v || 'Todos'
+      el.classList.toggle('ativo', !!v)
+    }
+
+    const ativos = Object.keys(filtros).length > 0
+    status.textContent = ativos ? `${visiveis} de ${itens.length} cases` : textoInicial
     vazio.hidden = visiveis > 0
 
-    const q = new URLSearchParams(escolhidos)
+    const q = new URLSearchParams(filtros)
     history.replaceState(null, '', q.size ? `?${q}` : location.pathname)
   }
 
-  form.addEventListener('change', (e) => {
-    if (e.target.value) filtros[e.target.name] = e.target.value
-    else delete filtros[e.target.name]
-    atualizar()
+  let aberto = null
+  const fechar = (devolverFoco) => {
+    if (!aberto) return
+    const botao = aberto.querySelector('button')
+    aberto.classList.remove('aberto')
+    botao.setAttribute('aria-expanded', 'false')
+    aberto = null
+    if (devolverFoco) botao.focus()
+  }
+  const abrir = (el) => {
+    fechar()
+    el.classList.add('aberto')
+    el.querySelector('button').setAttribute('aria-expanded', 'true')
+    aberto = el
+    el.querySelector('input:checked').focus()
+  }
+  for (const el of blocos) el.querySelector('button').addEventListener('click', () => (aberto === el ? fechar(true) : abrir(el)))
+
+  // Fecha ao clicar ou passar com Tab para fora
+  const fora = (e) => { if (aberto && !aberto.contains(e.target)) fechar() }
+  document.addEventListener('pointerdown', fora)
+  document.addEventListener('focusin', fora)
+  // detail > 0 é clique de verdade: nas setas o navegador também dispara click, e aí o menu fica aberto
+  form.addEventListener('click', (e) => { if (e.target.matches('input') && e.detail > 0) fechar(true) })
+  form.addEventListener('keydown', (e) => {
+    if (aberto && (e.key === 'Escape' || (e.key === 'Enter' && e.target.matches('input')))) {
+      e.preventDefault() // Enter no radio enviaria o formulário
+      fechar(true)
+    }
   })
-  vazio.querySelector('button').addEventListener('click', limpar)
+
+  form.addEventListener('change', atualizar)
+  // Só alcançável por link com combinação sem resultado: na tela, a opção que zeraria fica desativada
+  vazio.querySelector('button').addEventListener('click', () => {
+    form.reset()
+    atualizar()
+    form.querySelector('button').focus()
+  })
 
   form.hidden = false
   atualizar()

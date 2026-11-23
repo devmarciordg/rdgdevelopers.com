@@ -20,7 +20,6 @@ const listagem = ({ rota, titulo, descricao, rotulo, lista }) => ({
     <BlogLista
       cabecalho={{ trilha: [['Blog', '/blog'], [rotulo]], rotulo, titulo, sub: descricao }}
       posts={lista}
-      ativo={rota}
     />
   ),
 })

@@ -1,21 +1,36 @@
-/* Filtro por tema: links reais. Ativo = cor invertida (não só borda), alvo de 44px */
-.blog-filtro ul { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 clamp(2rem, 5vw, 3rem); padding: 0; list-style: none; }
-.blog-filtro a {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  min-height: 44px;
-  padding: 0 1rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--fg);
-  font-size: .9375rem;
-  text-decoration: none;
-}
-.blog-filtro a:hover { border-color: var(--mute); }
-.blog-filtro a[aria-current] { background: var(--fg); border-color: var(--fg); color: var(--bg); font-weight: 600; }
-.blog-filtro-n { color: var(--mute); font-size: .8125rem; font-variant-numeric: tabular-nums; }
-.blog-filtro a[aria-current] .blog-filtro-n { color: inherit; }
+/* Busca por título e por tags (ilha islands/buscaTags.js): botão e painel vêm do dropdown .filtro de projetos.css */
+.busca-tags { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; max-width: 820px; margin-bottom: clamp(1.5rem, 4vw, 2rem); }
+.busca-tags[hidden] { display: none; }
+.busca-nome { position: relative; flex: 1 1 280px; }
+.busca-nome svg { position: absolute; top: 50%; left: .875rem; width: 16px; height: 16px; transform: translateY(-50%); color: var(--mute); pointer-events: none; }
+.busca-nome input { width: 100%; min-height: 44px; padding: 0 .875rem 0 2.5rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--fg); color-scheme: dark; font: inherit; font-size: 1rem; transition: border-color .2s; }
+.busca-nome input::placeholder { color: var(--mute); opacity: 1; }
+.busca-nome input:hover, .busca-nome input:focus { border-color: var(--mute); }
+.busca-tags .filtro { flex: 0 1 260px; }
+@media (max-width: 600px) { .busca-tags .filtro { flex: 1 1 100%; } }
+.busca-tags .filtro-painel { width: 100%; }
+.busca-campo { display: flex; align-items: center; gap: .625rem; padding: 0 .875rem; border-bottom: 1px solid var(--line); }
+.busca-campo input { flex: 1; min-width: 0; min-height: 44px; padding: 0; border: 0; outline: 0; background: none; color: var(--fg); font: inherit; font-size: 1rem; }
+.busca-campo input::placeholder { color: var(--mute); opacity: 1; }
+.busca-campo:focus-within { box-shadow: inset 0 -1px 0 var(--mute); }
+.busca-opcoes { max-height: 264px; margin: 0; padding: 0; overflow-y: auto; list-style: none; }
+.busca-opcoes [role=option] { display: flex; align-items: center; gap: .625rem; min-height: 44px; padding: 0 .875rem; font-size: .9375rem; cursor: pointer; }
+.busca-opcoes [role=option][hidden] { display: none; }
+.busca-opcoes [role=option] > :first-child { flex: 1; }
+.busca-opcoes [role=option]::after { content: "✓"; content: "✓" / ""; width: 1em; text-align: center; visibility: hidden; }
+.busca-opcoes [aria-selected=true] { font-weight: 600; }
+.busca-opcoes [aria-selected=true]::after { visibility: visible; }
+.busca-opcoes .ativa { background: var(--line); }
+.busca-opcoes [aria-disabled=true] { opacity: .45; cursor: not-allowed; }
+@media (hover: hover) { .busca-opcoes [role=option]:not([aria-disabled=true]):hover { background: var(--bg2); } .busca-opcoes .ativa:hover { background: var(--line); } }
+.busca-sem-tag { margin: 0; padding: 1rem .875rem; color: var(--mute); font-size: .9375rem; text-align: center; }
+/* Linha própria, sempre abaixo dos campos */
+.busca-selecao { display: flex; flex: 1 1 100%; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.busca-selecao[hidden] { display: none; }
+.busca-chips { display: contents; }
+.busca-chips button { min-height: 36px; padding: 0 .75rem; border: 1px solid var(--mute); border-radius: 6px; background: var(--bg2); color: var(--fg); font: inherit; font-size: .8125rem; cursor: pointer; }
+.busca-chips button:hover { border-color: var(--fg); }
+.busca-status { margin: 0; color: var(--mute); font-size: .875rem; }
 
 /* Lista numerada: o número em Bebas é decorativo, vem do CSS */
 .blog-lista { max-width: 820px; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); counter-reset: post; }

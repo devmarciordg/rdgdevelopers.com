@@ -66,16 +66,34 @@
 /* Marca o case sem cliente real. Fica sobre a capa, em todo lugar onde o card aparece. */
 .case-tag { position: absolute; top: .75rem; left: .75rem; z-index: 2; margin: 0; padding: .25rem .625rem; border-radius: 999px; background: #fff; color: #151517; font-size: .75rem; font-weight: 700; line-height: 1.4; pointer-events: none; }
 
-/* Filtros de /projetos, no padrão do app de leads: menus com contagem, chips dos ativos, "Limpar tudo" */
+/* Filtros de /projetos: dropdown animado (ilha islands/filtros.js). Painel fechado com visibility: sai da ordem do Tab */
 .case[hidden] { display: none; }
-.filtros { margin-bottom: 1.5rem; }
-.filtros-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: .75rem 1rem; }
-.filtros label { display: block; margin-bottom: .375rem; color: var(--mute); font-size: .85rem; }
-.filtros-sel { position: relative; }
-.filtros select { appearance: none; width: 100%; min-height: 44px; padding: 0 2.25rem 0 .875rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--fg); color-scheme: dark; font: inherit; cursor: pointer; }
-.filtros select:hover { border-color: var(--mute); }
-.filtros-sel svg { position: absolute; top: 50%; right: .75rem; width: 16px; height: 16px; transform: translateY(-50%); color: var(--mute); pointer-events: none; }
-.filtros-ativos { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: .75rem; }
-.filtros-ativos:empty { display: none; }
-.chip { min-height: 44px; padding: 0 .875rem; border: 1px solid var(--mute); border-radius: 999px; background: var(--bg2); color: var(--fg); font: inherit; font-size: .875rem; cursor: pointer; }
+.filtros { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+.filtro { position: relative; }
+.filtro > button { display: flex; align-items: center; justify-content: space-between; gap: .625rem; width: 100%; min-height: 44px; padding: 0 .875rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--fg); font: inherit; font-size: .9375rem; text-align: left; cursor: pointer; transition: border-color .2s, background .2s; }
+.filtro > button:hover, .filtro.aberto > button { border-color: var(--mute); }
+.filtro.ativo > button { border-color: var(--fg); background: var(--bg2); font-weight: 600; }
+.filtro-nome { color: var(--mute); font-weight: 400; }
+.filtro svg { flex: none; width: 16px; height: 16px; color: var(--mute); transition: transform .2s ease-in-out; }
+.filtro.aberto > button > svg { transform: rotate(180deg); }
+.filtro-painel { position: absolute; top: calc(100% + .5rem); left: 0; z-index: 20; width: max-content; min-width: 100%; margin: 0; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); box-shadow: 0 12px 32px rgb(0 0 0 / .45); opacity: 0; visibility: hidden; transform: translateY(-10px) scale(.95); transform-origin: top left; transition: opacity .2s ease-out, transform .2s ease-out, visibility 0s .2s; }
+.filtro.aberto .filtro-painel { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.filtro-painel label { position: relative; display: block; border-bottom: 1px solid var(--line); opacity: 0; transform: translateX(-12px); transition: opacity .2s ease-out, transform .2s ease-out; }
+.filtro-painel label:last-child { border-bottom: 0; }
+.filtro.aberto .filtro-painel label { opacity: 1; transform: none; transition-delay: calc(var(--i) * 30ms); }
+.filtro-painel label input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.filtro-painel label input:disabled { cursor: not-allowed; }
+.filtro-painel label > span { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 44px; padding: 0 .875rem; color: var(--fg); font-size: .9375rem; transition: background .15s; }
+.filtro-painel input:hover:not(:disabled) + span { background: var(--bg2); }
+.filtro-painel input:focus-visible + span { outline: 2px solid var(--fg); outline-offset: -2px; }
+.filtro-painel input:checked + span { background: var(--line); font-weight: 600; }
+.filtro-painel input:disabled + span { opacity: .45; }
+.filtros-n { color: var(--mute); font-size: .8125rem; font-weight: 400; font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) {
+  .filtro { flex: 1 1 100%; }
+  .filtro-painel { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .filtro svg, .filtro-painel, .filtro-painel label, .filtro.aberto .filtro-painel label { transition: none; }
+}
 .link-limpar { min-height: 44px; padding: 0 .25rem; border: 0; background: none; color: var(--mute); font: inherit; font-size: .875rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }

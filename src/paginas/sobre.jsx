@@ -30,9 +30,9 @@ const pessoas = [
   },
   {
     nome: 'Luiza Silva',
-    cargo: 'Comercial e relacionamento',
+    cargo: 'Sócia e Comercial',
     texto: 'Cuida do primeiro contato, da qualificação, das propostas e do relacionamento com cada cliente.',
-    alt: 'Luiza Silva, responsável comercial da RDG Developers',
+    alt: 'Luiza Silva, sócia e responsável comercial da RDG Developers',
     avif: [luizaAvif480, luizaAvif960],
     webp: [luizaWebp480, luizaWebp960],
   },
